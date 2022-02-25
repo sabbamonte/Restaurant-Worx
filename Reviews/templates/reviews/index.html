@@ -1,0 +1,55 @@
+{% extends "reviews/layout.html"%}
+{% load static %}
+
+{% block body %}
+    <!-- Page Container -->
+    <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">    
+        <!-- The Grid -->
+        <div class="w3-row">
+            <!-- Left Column -->
+            <div class="w3-col m3">
+            <!-- Profile -->
+                <div class="w3-card w3-round w3-white">
+                    <div class="w3-container">
+                        <h4 class="w3-center">{{ request.user }}</h4>
+                        <hr>
+                        <div class="row">
+                            <div class="col-12 col-md-6 mt-1">
+                                <p id="position"><i class="fa fa-briefcase fa-fw w3-margin-right w3-text-theme"></i> Position </p>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <button type="button" id="pos_edit" class="w3-button w3-theme btn-sm edit"><i class="fa fa-pencil"></i> add/edit</button> 
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-md-6 mt-1">
+                                <p id="location"><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> Location </p>
+                            </div>
+                            <div class="col-12 col-md-6 mb-2 mt-1">
+                                <button type="button" id="loc_edit" class="w3-button w3-theme btn-sm edit"><i class="fa fa-pencil"></i> add/edit</button>
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+            <br>
+        
+            <!-- Accordion -->
+            <div class="w3-card w3-round">
+                <div class="w3-white">
+                    <button onclick="myFunction('Demo2')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i> My Reviews</button>
+                    <div id="Demo2" class="w3-hide w3-container">
+                        <p>Some other text..</p>
+                    </div>
+                </div>      
+            </div>
+        <br>
+        <!-- End Left Column -->
+        </div>
+    
+    <!-- End Page Container -->
+    </div>
+    <br>
+{% endblock %}
+{% block script %}
+<script src="{% static 'reviews/script.js' %}"></script>
+{% endblock %}
