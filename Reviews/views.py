@@ -16,25 +16,12 @@ from .models import User, Info
 @csrf_exempt
 def index(request):
     if request.method == 'GET':
-        return render(request, 'reviews/index.html')
-    
-    if request.method == 'POST':
-        data = json.loads(request.body.decode("utf-8"))
-
-        if data.get('position') is not None:
-            info = Info()
-            info.positon = data.get('position')
-            info.user = request.user
-            info.save()
-
-        elif data.get('location') is not None:
-            info = Info()
-            info.location = data.get('location')
-            info.user = request.user
-            info.save()
-
-        return JsonResponse({"message": "Updated successfuly"}, status=201)
-
+        try:
+            info = Info.objects.get(user=request.user)
+            return render(request, 'reviews/index.html', {"info": info})
+        except ObjectDoesNotExist:
+            return render(request, 'reviews/index.html')
+            
 # Try to log user in
 @csrf_exempt
 def login_view(request):
@@ -105,5 +92,35 @@ def logout_view(request):
     logout(request)
     return HttpResponseRedirect(reverse("index"))
 
+# Add/Edit position or location
+@login_required(login_url='/login')
+@csrf_exempt
+def add(request):
+    if request.method == "POST":
+        data = json.loads(request.body.decode("utf-8"))
 
-# Create your views here.
+        all_info = Info.objects.filter(user=request.user)
+        if not all_info:
+            info = Info()
+            if data.get('position'):
+                info.position = data.get('position')
+            else:
+                info.location = data.get('location')
+            info.user = request.user
+            info.save()
+        else: 
+            get_info = Info.objects.get(user=request.user)
+            if data.get('position'):
+                get_info.position = data.get('position')
+            else:
+                get_info.location = data.get('location')
+            get_info.save()
+
+        return JsonResponse({"message": "Updated successfuly"}, status=201)
+
+@login_required(login_url='/login')
+@csrf_exempt
+def review(request):
+    if request.method == "GET":
+        return render(request, "reviews/review.html")
+

@@ -1,0 +1,144 @@
+{% extends "reviews/layout.html"%}
+{% load static %}
+
+{% block body %}
+
+<div class="w3-container w3-content" style="max-width:1400px;margin-top:80px"> 
+    <form id="review" name="review">
+        <h3>Info & Average Work Week</h3>
+        <br>
+        <div class="row">
+            <div class="col-12 col-md-3 ">
+                <label for="inputName">Restaurant Name</label>
+                <input type="textarea" class="form-control" id="inputName" name="Name" required="required" placeholder="">
+            </div>
+            <div class="col-12 col-md-3">
+                <label for="inputPosition">Position</label>
+                <input type="textarea" class="form-control" id="inputPosition" required="required" placeholder="Bartender" name="Position">
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-12 col-md-2">
+                <label for="inputDays">Workdays</label>
+                <select class="form-control required" id="inputDays" required="required">
+                    <option disabled selected value="">Choose...</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                </select>
+            </div>
+            <div class="col-12 col-md-2">
+                <label for="inputHours">Hours per Shift</label>
+                <select class="form-control required" id="inputHours" required="required">
+                    <option disabled selected value="">Choose...</option>
+                    <option>1</option>
+                    <option>1.5</option>
+                    <option>2</option>
+                    <option>2.5</option>
+                    <option>3</option>
+                    <option>3.5</option>
+                    <option>4</option>
+                    <option>4.5</option>
+                    <option>5</option>
+                    <option>5.5</option>
+                    <option>6</option>
+                    <option>6.5</option>
+                    <option>7</option>
+                    <option>7.5</option>
+                    <option>8</option>
+                    <option>8.5</option>
+                    <option>9</option>
+                    <option>9.5</option>
+                    <option>10+</option>
+                </select>
+            </div>
+            <div class="col-12 col-md-2 ">
+                <label for="inputPay">Pay per Week</label>
+                <input type="number" class="form-control" id="inputPay" name="Pay" required="required" placeholder="">
+                <br>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-12 col-md-2">
+                <label for="inputStips">Slow Shift</label>
+                <input type="number" class="form-control" id="inputStips" name="Stips" required="required" placeholder="Tip amount">
+            </div>
+            <div class="col-12 col-md-2">
+                <label for="inputBtips">Busy Shift</label>
+                <input type="number" class="form-control" id="inputBtips" name="Btips" required="required" placeholder="Tip amount">
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-12 col-md-2">
+                <label for="inputEnvo">How's the Environment?</label>
+                <select class="form-control required" id="inputEnvo" required="required">
+                    <option disabled selected value="">Choose..</option>
+                    <option>Amazing</option>
+                    <option>Pretty great</option>
+                    <option>Good</option>
+                    <option>Okay</option>
+                    <option>It sucks</option>
+                </select>
+            </div>
+            <div class="col-12 col-md-2">
+                <label for="inputMgmt">Management?</label>
+                <select class="form-control required" id="inputMgmt" required="required">
+                    <option disabled selected value="">Choose..</option>
+                    <option>Amazing</option>
+                    <option>Pretty great</option>
+                    <option>Good</option>
+                    <option>Okay</option>
+                    <option>It sucks</option>
+                </select>
+            </div>
+            <div class="col-12 col-md-2">
+                <label for="inputBal">Work/Life Balance?</label>
+                <select class="form-control required" id="inputBal" required="required">
+                    <option disabled selected value="">Choose..</option>
+                    <option>Amazing</option>
+                    <option>Pretty great</option>
+                    <option>Balanced</option>
+                    <option>Stressful</option>
+                    <option>I just want to sleep</option>
+                </select>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <label for="inputComment">Comments/More Details</label>
+                <textarea rows="5" class="form-control" id="inputComment"></textarea>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="rating col-12 col-md-4"> 
+                <h4><label for="inputRating"> &ensp; &ensp; Overall Rating </label></h4>
+            </div>
+        </div>
+        <div class="row">
+                <div class="rating col-12 col-md-4"> 
+                    <input type="radio" name="rating" value="5" id="5">
+                    <label for="5">☆</label> 
+                    <input type="radio" name="rating" value="4" id="4">
+                    <label for="4">☆</label> 
+                    <input type="radio" name="rating" value="3" id="3">
+                    <label for="3">☆</label> 
+                    <input type="radio" name="rating" value="2" id="2">
+                    <label for="2">☆</label> 
+                    <input type="radio" name="rating" value="1" id="1">
+                    <label for="1">☆</label>
+                </div>
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+{% endblock %}

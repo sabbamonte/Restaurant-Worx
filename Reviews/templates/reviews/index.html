@@ -15,7 +15,11 @@
                         <hr>
                         <div class="row">
                             <div class="col-12 col-md-6 mt-1">
+                                {% if info.position %}
+                                <p id="position"><i class="fa fa-briefcase fa-fw w3-margin-right w3-text-theme"></i> {{info.position}} </p>
+                                {% else %}
                                 <p id="position"><i class="fa fa-briefcase fa-fw w3-margin-right w3-text-theme"></i> Position </p>
+                                {% endif %}
                             </div>
                             <div class="col-12 col-md-6">
                                 <button type="button" id="pos_edit" class="w3-button w3-theme btn-sm edit"><i class="fa fa-pencil"></i> add/edit</button> 
@@ -23,7 +27,11 @@
                         </div>
                         <div class="row">
                             <div class="col-12 col-md-6 mt-1">
+                                {% if info.location %}
+                                <p id="location"><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> {{info.location}} </p>
+                                {% else %}
                                 <p id="location"><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> Location </p>
+                                {% endif %}
                             </div>
                             <div class="col-12 col-md-6 mb-2 mt-1">
                                 <button type="button" id="loc_edit" class="w3-button w3-theme btn-sm edit"><i class="fa fa-pencil"></i> add/edit</button>
@@ -49,7 +57,4 @@
     <!-- End Page Container -->
     </div>
     <br>
-{% endblock %}
-{% block script %}
-<script src="{% static 'reviews/script.js' %}"></script>
 {% endblock %}

@@ -30,7 +30,6 @@ document.addEventListener('DOMContentLoaded', function() {
             add_edit_info(button.id)
             console.log(button.id)
         })
-
     })
 
     // Create form to submit edited data to database
@@ -40,24 +39,46 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('position').innerHTML =
                 `<form id="save"><textarea rows="1" cols="20" id="new_pos"></textarea>
                 <button class="w3-button w3-theme btn-sm" type="submit"> Save </button></form>`
+
+            document.querySelector('#save').onsubmit = function() {
+                fetch(`/add`, {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        position: document.querySelector('#new_pos').value,
+                    })
+                })
+
+            } 
         }
         else if (add_edit == 'loc_edit') {
             document.getElementById('loc_edit').style.display = 'none'
             document.getElementById('location').innerHTML =
                 `<form id="save"><textarea rows="1" cols="20" id="new_loc"></textarea>
                 <button class="w3-button w3-theme btn-sm" type="submit"> Save </button></form>`
-        }
 
-        document.querySelector('#save').obsubmit = function() {
-            fetch(`/index`, {
-                method: 'POST',
-                body: JSON.stringify({
-                    position: document.querySelector('#new_pos').value,
-                    location: document.querySelector('#new_loc').value
-                })
-            })
+            document.querySelector('#save').onsubmit = function() {
+                fetch(`/add`, {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        location: document.querySelector('#new_loc').value,
+                    })
+                }) 
+            } 
         }
-
     }
 
+    document.querySelector('#review').onsubmit = function() {
+        
+        if(document.review.rating.value == "") {
+            alert("You need to give a rating")
+            return false;
+        }
+
+        if(document.review.Pay.value <= 0) {
+            alert("Pay has to be above 0")
+            document.review.Pay.focus();
+            return false;
+        }
+        return true;
+    }
 });
