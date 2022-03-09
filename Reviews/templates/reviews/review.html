@@ -4,6 +4,12 @@
 {% block body %}
 
 <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px"> 
+    <div class="alert alert-danger alert-dismissible fade show col-12 col-md-6" role="alert" id="alert">
+        The Pay and tip amount fields need to be above $0
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
     <form id="review" name="review">
         <h3>Info & Average Work Week</h3>
         <br>
@@ -120,11 +126,11 @@
         <br>
         <div class="row">
             <div class="rating col-12 col-md-4"> 
-                <h4><label for="inputRating"> &ensp; &ensp; Overall Rating </label></h4>
+                <h4><label for="inputRating"> &ensp; &ensp; &ensp; Overall Rating </label></h4>
             </div>
         </div>
         <div class="row">
-                <div class="rating col-12 col-md-4"> 
+                <div class="rating col-12 col-md-4" id="stars"> 
                     <input type="radio" name="rating" value="5" id="5">
                     <label for="5">☆</label> 
                     <input type="radio" name="rating" value="4" id="4">
@@ -136,9 +142,16 @@
                     <input type="radio" name="rating" value="1" id="1">
                     <label for="1">☆</label>
                 </div>
+            
         </div>
+        <div class="row">
+            <div class="col-12 col-md-1 float-md-right">
+                <button type="submit" class="btn btn-dark">Submit</button>
+            </div>
+        </div>
+       
         <br>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        
     </form>
 </div>
 {% endblock %}

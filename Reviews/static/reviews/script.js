@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
         })
     })
 
-    // Create form to submit edited data to database
+    // Create form to submit edited positon and location to database
     function add_edit_info(add_edit) {
         if (add_edit === 'pos_edit') {
             document.getElementById('pos_edit').style.display = 'none'
@@ -47,7 +47,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         position: document.querySelector('#new_pos').value,
                     })
                 })
-
             } 
         }
         else if (add_edit == 'loc_edit') {
@@ -67,18 +66,43 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    // Error checking review form submission and saving it to database
     document.querySelector('#review').onsubmit = function() {
         
+        // Check if a rating was selected
         if(document.review.rating.value == "") {
-            alert("You need to give a rating")
+            document.getElementById('alert').innerHTML = `You need to provide a rating  
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>`
+            document.getElementById('alert').style.display = 'block'
             return false;
         }
 
-        if(document.review.Pay.value <= 0) {
-            alert("Pay has to be above 0")
+        // Check Pay and tips are not below or equal to 0
+        if(document.review.Pay.value <= 0 || document.review.Stips.value <= 0 || document.review.Btips.value <= 0) {
+            document.getElementById('alert').style.display = 'block'
             document.review.Pay.focus();
             return false;
         }
-        return true;
+
+        // Send data to Django via JSON API
+        fetch(`review`, {
+            method: 'POST',
+            body: JSON.stringify({
+                name: document.querySelector('#inputName').value,
+                position: document.querySelector('#inputPosition').value,
+                days: document.querySelector('#inputDays').value,
+                hours: document.querySelector('#inputHours').value,
+                pay: document.querySelector('#inputPay').value,
+                slow: document.querySelector('#inputStips').value,
+                busy: document.querySelector('#inputBtips').value,
+                envo: document.querySelector('#inputEnvo').value,
+                mngmt: document.querySelector('#inputMgmt').value,
+                balance: document.querySelector('#inputBal').value,
+                comments: document.querySelector('#inputComment').value,
+                rating: document.review.rating.value
+            })
+        })
     }
 });

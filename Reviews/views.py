@@ -9,7 +9,7 @@ import json
 from django.views.decorators.csrf import csrf_exempt
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
 
-from .models import User, Info
+from .models import User, Info, Review
 
 # Create your views here.
 @login_required(login_url='/login')
@@ -123,4 +123,26 @@ def add(request):
 def review(request):
     if request.method == "GET":
         return render(request, "reviews/review.html")
+
+    if request.method == "POST":
+        data = json.loads(request.body.decode("utf-8"))
+
+        review = Review()
+        review.user = request.user
+        review.name = data.get('name')
+        review.position = data.get('position')
+        review.days = data.get('days')
+        review.hours = data.get('hours')
+        review.pay = data.get('pay')
+        review.slow = data.get('slow')
+        review.busy = data.get('busy')
+        review.envo = data.get('envo')
+        review.mngmt = data.get('mngmt')
+        review.balance = data.get('balance')
+        review.comments = data.get('comments')
+        review.rating = data.get('rating')
+
+        review.save()
+
+        return HttpResponse('Review added successfully')
 
