@@ -9,7 +9,8 @@ urlpatterns = [
 	path("review", views.review, name="review" ),
 
 	# API paths
-	path("add", views.add, name="add")
+	path("add", views.add, name="add"),
+	path("review", views.review, name="review")
 ]
 
 	

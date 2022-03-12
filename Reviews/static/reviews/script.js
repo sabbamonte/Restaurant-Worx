@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-
+    
     // Accordion
     function myFunction(id) {
         var x = document.getElementById(id);
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log(button.id)
         })
     })
-
+    
     // Create form to submit edited positon and location to database
     function add_edit_info(add_edit) {
         if (add_edit === 'pos_edit') {
@@ -71,17 +71,24 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Check if a rating was selected
         if(document.review.rating.value == "") {
-            document.getElementById('alert').innerHTML = `You need to provide a rating  
+            new_alert = document.getElementById('alert')
+            new_alert.className = `alert alert-danger alert-dismissible fade show `
+            new_alert.innerHTML = `You need to provide a rating  
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>`
-            document.getElementById('alert').style.display = 'block'
             return false;
         }
 
         // Check Pay and tips are not below or equal to 0
-        if(document.review.Pay.value <= 0 || document.review.Stips.value <= 0 || document.review.Btips.value <= 0) {
-            document.getElementById('alert').style.display = 'block'
+        if(document.review.Pay.value <= 0 || document.review.Stips.value <= 0
+            || document.review.Btips.value <= 0) {
+            new_alert = document.getElementById('alert')
+            new_alert.className = `alert alert-danger alert-dismissible fade show `
+            new_alert.innerHTML = `Pay and tip amounts need to be above $0
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>`
             document.review.Pay.focus();
             return false;
         }

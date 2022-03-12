@@ -34,5 +34,10 @@
 
 select{
     -webkit-appearance: listbox !important
-    }
+}
+
+.checked {
+    color: orange;
+    width: 1.5em;
+  }
 

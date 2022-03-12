@@ -3,12 +3,12 @@
 
 {% block body %}
     <!-- Page Container -->
-    <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">    
+    <div class="container" style="max-width:1400px;margin-top:80px">    
         <!-- The Grid -->
-        <div class="w3-row">
+        <div class="row col-12 justify-content-start">
             <!-- Left Column -->
-            <div class="w3-col m3">
-            <!-- Profile -->
+            <div class="col-12 col-md-4">
+                <!-- Profile -->
                 <div class="w3-card w3-round w3-white">
                     <div class="w3-container">
                         <h4 class="w3-center">{{ request.user }}</h4>
@@ -36,23 +36,72 @@
                             <div class="col-12 col-md-6 mb-2 mt-1">
                                 <button type="button" id="loc_edit" class="w3-button w3-theme btn-sm edit"><i class="fa fa-pencil"></i> add/edit</button>
                             </div>
-                        </div> 
+                        </div>
+                    </div> 
+                </div>
+                <br>
+                <!-- Accordion -->
+                <div class="w3-card w3-round">
+                    <div class="w3-white">
+                        <button onclick="myFunction('Demo2')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i> My Reviews</button>
+                        <div id="Demo2" class="w3-hide w3-container">
+                            <p>Some other text..</p>
+                        </div>
+                    </div>      
+                </div>
+                <br>
+            </div>
+            <!-- End Left Column -->
+            <!-- Right Colum -->
+            
+            {% if reviews %}
+            <div class="col-12 col-md-5 offset-md-1">
+                {% for review in reviews %}
+                <div class="w3-card w3-round w3-white ">
+                    <div class="w3-container ">
+                        <a href="#"> <h4 class="w3-center">{{ review.name }}</h4> </a> 
+                        <hr>
+                        <div class="row w3-center">
+                            <div class="col-12 col-md-6 starrr_rating">
+                                <div id="{{review.id}}">{{review.rating}}</div>
+                                <script type="text/javascript">
+                                    document.getElementById('{{review.id}}').style.display = 'none'
+                                </script>
+                                <div id="srating-{{review.id}}"></div>
+                                <script type="text/javascript">
+                                    i = 0;
+                                    review = document.getElementById('{{review.id}}').innerHTML;
+                                    while( i < review) {
+                                        const para = document.createElement("p");
+                                        para.className = `fa fa-star checked`
+
+                                        const element = document.getElementById("srating-{{review.id}}");
+                                        element.appendChild(para);      
+                                        i++;
+                                    }
+                                </script>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                {{review.position}}
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row w3-center">
+                            <div class="col-12">
+                                {{review.comments}}
+                            </div>
+                        </div>
+                        <br>
                     </div>
                 </div>
-            <br>
-        
-            <!-- Accordion -->
-            <div class="w3-card w3-round">
-                <div class="w3-white">
-                    <button onclick="myFunction('Demo2')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i> My Reviews</button>
-                    <div id="Demo2" class="w3-hide w3-container">
-                        <p>Some other text..</p>
-                    </div>
-                </div>      
+                <br>
+                <br>
+                {% endfor %}
             </div>
-        <br>
-        <!-- End Left Column -->
+            {% endif %}
         </div>
+        
+       
     
     <!-- End Page Container -->
     </div>

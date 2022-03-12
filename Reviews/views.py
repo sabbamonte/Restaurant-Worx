@@ -16,11 +16,12 @@ from .models import User, Info, Review
 @csrf_exempt
 def index(request):
     if request.method == 'GET':
+        reviews = Review.objects.all()
         try:
             info = Info.objects.get(user=request.user)
-            return render(request, 'reviews/index.html', {"info": info})
+            return render(request, 'reviews/index.html', {"info": info, "reviews": reviews})
         except ObjectDoesNotExist:
-            return render(request, 'reviews/index.html')
+            return render(request, 'reviews/index.html', {"reviews": reviews})
             
 # Try to log user in
 @csrf_exempt
@@ -129,8 +130,8 @@ def review(request):
 
         review = Review()
         review.user = request.user
-        review.name = data.get('name')
-        review.position = data.get('position')
+        review.name = data.get('name').upper()
+        review.position = data.get('position').upper()
         review.days = data.get('days')
         review.hours = data.get('hours')
         review.pay = data.get('pay')
@@ -144,5 +145,5 @@ def review(request):
 
         review.save()
 
-        return HttpResponse('Review added successfully')
+        return JsonResponse({"message": "Updated successfuly"}, status=201)
 

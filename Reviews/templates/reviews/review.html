@@ -4,13 +4,8 @@
 {% block body %}
 
 <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px"> 
-    <div class="alert alert-danger alert-dismissible fade show col-12 col-md-6" role="alert" id="alert">
-        The Pay and tip amount fields need to be above $0
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <form id="review" name="review">
+    <div id="alert" role="alert"></div>
+    <form id="review" name="review" action="{% url 'index' %}">
         <h3>Info & Average Work Week</h3>
         <br>
         <div class="row">
@@ -130,23 +125,23 @@
             </div>
         </div>
         <div class="row">
-                <div class="rating col-12 col-md-4" id="stars"> 
-                    <input type="radio" name="rating" value="5" id="5">
-                    <label for="5">☆</label> 
-                    <input type="radio" name="rating" value="4" id="4">
-                    <label for="4">☆</label> 
-                    <input type="radio" name="rating" value="3" id="3">
-                    <label for="3">☆</label> 
-                    <input type="radio" name="rating" value="2" id="2">
-                    <label for="2">☆</label> 
-                    <input type="radio" name="rating" value="1" id="1">
-                    <label for="1">☆</label>
-                </div>
+            <div class="rating col-12 col-md-4" id="stars"> 
+                <input type="radio" name="rating" value="5" id="5">
+                <label for="5">☆</label> 
+                <input type="radio" name="rating" value="4" id="4">
+                <label for="4">☆</label> 
+                <input type="radio" name="rating" value="3" id="3">
+                <label for="3">☆</label> 
+                <input type="radio" name="rating" value="2" id="2">
+                <label for="2">☆</label> 
+                <input type="radio" name="rating" value="1" id="1">
+                <label for="1">☆</label>
+            </div>
             
         </div>
         <div class="row">
             <div class="col-12 col-md-1 float-md-right">
-                <button type="submit" class="btn btn-dark">Submit</button>
+                <button type="submit" id="review_sub" class="btn btn-dark">Submit</button>
             </div>
         </div>
        
