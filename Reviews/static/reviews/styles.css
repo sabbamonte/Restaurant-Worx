@@ -39,5 +39,9 @@ select{
 .checked {
     color: orange;
     width: 1.5em;
-  }
+}
+
+th {
+    font-weight:bold;
+}
 

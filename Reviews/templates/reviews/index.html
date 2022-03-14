@@ -93,6 +93,38 @@
                         </div>
                         <br>
                     </div>
+                    <div class="accordion" id="{{review.id}}">
+                        <div class="card">
+                          <div class="card-header text-center" id="heading-{{review.id}}">
+                            <h5 class="mb-0">
+                              <button class="w3-button w3-theme btn-sm " type="button" data-toggle="collapse" data-target="#collapse-{{review.id}}" aria-controls="collapse-{{review.id}}">
+                                Read Review
+                              </button>
+                            </h5>
+                          </div>
+                      
+                        <div id="collapse-{{review.id}}" class="collapse show" aria-labelledby="heading-{{review.id}}" data-parent="#{{review.id}}">
+                            <div class="card-body">
+                                <table class="table">
+                                    <thead class="text-center">
+                                      <tr>
+                                        <th scope="col">Days per Week</th>
+                                        <th scope="col">Hours per Shift</th>
+                                        <th scope="col">Pay per Week</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody class="text-center">
+                                      <tr>
+                                        <td>{{review.days}}</td>
+                                        <td>{{review.hours}}</td>
+                                        <td>${{review.pay}}</td>
+                                      </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
                 </div>
                 <br>
                 <br>
