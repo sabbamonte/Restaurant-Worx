@@ -85,13 +85,8 @@
                                 {{review.position}}
                             </div>
                         </div>
-                        <hr>
-                        <div class="row w3-center">
-                            <div class="col-12">
-                                {{review.comments}}
-                            </div>
-                        </div>
-                        <br>
+                      
+                    
                     </div>
                     <div class="accordion" id="{{review.id}}">
                         <div class="card">
@@ -103,17 +98,17 @@
                             </h5>
                           </div>
                       
-                        <div id="collapse-{{review.id}}" class="collapse show" aria-labelledby="heading-{{review.id}}" data-parent="#{{review.id}}">
-                            <div class="card-body">
+                        <div id="collapse-{{review.id}}" class="collapse" aria-labelledby="heading-{{review.id}}" data-parent="#{{review.id}}">
+                            <div class="card-body text-center">
                                 <table class="table">
-                                    <thead class="text-center">
+                                    <thead class="text-center thead-light">
                                       <tr>
                                         <th scope="col">Days per Week</th>
                                         <th scope="col">Hours per Shift</th>
                                         <th scope="col">Pay per Week</th>
                                       </tr>
                                     </thead>
-                                    <tbody class="text-center">
+                                    <tbody class="text-center ">
                                       <tr>
                                         <td>{{review.days}}</td>
                                         <td>{{review.hours}}</td>
@@ -121,6 +116,42 @@
                                       </tr>
                                     </tbody>
                                 </table>
+                                <br>
+                                <table class="table">
+                                    <thead class="text-center thead-light">
+                                        <tr>
+                                          <th scope="col">Environment</th>
+                                          <th scope="col">Management</th>
+                                          <th scope="col">Work / Life</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody class="text-center">
+                                        <tr>
+                                          <td>{{review.envo}}</td>
+                                          <td>{{review.mngmt}}</td>
+                                          <td>{{review.balance}}</td>
+                                        </tr>
+                                      </tbody>
+                                </table>
+                                <br>
+                                <table class="table">
+                                    <thead class="text-center thead-light">
+                                        <tr>
+                                          <th scope="col">Comments</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody class="text-center">
+                                        <tr>
+                                          <td>{{review.comments}}</td>
+                                        </tr>
+                                      </tbody>
+                                </table>
+                                <br>
+                                <a href="#"> 
+                                    <button class="w3-button w3-theme btn-sm" type="button">
+                                        Find out more
+                                    </button>
+                                </a>
                             </div>
                           </div>
                         </div>
