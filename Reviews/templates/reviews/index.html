@@ -2,171 +2,163 @@
 {% load static %}
 
 {% block body %}
-    <!-- Page Container -->
-    <div class="container" style="max-width:1400px;margin-top:80px">    
-        <!-- The Grid -->
-        <div class="row col-12 justify-content-start">
-            <!-- Left Column -->
-            <div class="col-12 col-md-4">
-                <!-- Profile -->
-                <div class="w3-card w3-round w3-white">
-                    <div class="w3-container">
-                        <h4 class="w3-center">{{ request.user }}</h4>
-                        <hr>
-                        <div class="row">
-                            <div class="col-12 col-md-6 mt-1">
-                                {% if info.position %}
-                                <p id="position"><i class="fa fa-briefcase fa-fw w3-margin-right w3-text-theme"></i> {{info.position}} </p>
-                                {% else %}
-                                <p id="position"><i class="fa fa-briefcase fa-fw w3-margin-right w3-text-theme"></i> Position </p>
-                                {% endif %}
-                            </div>
-                            <div class="col-12 col-md-6">
-                                <button type="button" id="pos_edit" class="w3-button w3-theme btn-sm edit"><i class="fa fa-pencil"></i> add/edit</button> 
-                            </div>
+<!-- Page Container -->
+<div class="container" style="max-width:1400px;margin-top:80px">    
+    <!-- The Grid -->
+    <div class="row col-12">
+        <!-- Left Column -->
+        <div class="col-12 col-md-4">
+            <!-- Profile -->
+            <div class="w3-card w3-round w3-white">
+                <div class="w3-container">
+                    <h4 class="w3-center">{{ request.user }}</h4>
+                    <hr>
+                    <div class="row">
+                        <div class="col-12 col-md-6 mt-1">
+                            {% if info.position %}
+                            <p id="position"><i class="fa fa-briefcase fa-fw w3-margin-right w3-text-theme"></i> {{info.position}} </p>
+                            {% else %}
+                            <p id="position"><i class="fa fa-briefcase fa-fw w3-margin-right w3-text-theme"></i> Position </p>
+                            {% endif %}
                         </div>
-                        <div class="row">
-                            <div class="col-12 col-md-6 mt-1">
-                                {% if info.location %}
-                                <p id="location"><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> {{info.location}} </p>
-                                {% else %}
-                                <p id="location"><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> Location </p>
-                                {% endif %}
-                            </div>
-                            <div class="col-12 col-md-6 mb-2 mt-1">
-                                <button type="button" id="loc_edit" class="w3-button w3-theme btn-sm edit"><i class="fa fa-pencil"></i> add/edit</button>
-                            </div>
-                        </div>
-                    </div> 
-                </div>
-                <br>
-                <!-- Accordion -->
-                <div class="w3-card w3-round">
-                    <div class="w3-white">
-                        <button onclick="myFunction('Demo2')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i> My Reviews</button>
-                        <div id="Demo2" class="w3-hide w3-container">
-                            <p>Some other text..</p>
-                        </div>
-                    </div>      
-                </div>
-                <br>
-            </div>
-            <!-- End Left Column -->
-            <!-- Right Colum -->
-            
-            {% if reviews %}
-            <div class="col-12 col-md-5 offset-md-1">
-                {% for review in reviews %}
-                <div class="w3-card w3-round w3-white ">
-                    <div class="w3-container ">
-                        <a href="#"> <h4 class="w3-center">{{ review.name }}</h4> </a> 
-                        <hr>
-                        <div class="row w3-center">
-                            <div class="col-12 col-md-6 starrr_rating">
-                                <div id="{{review.id}}">{{review.rating}}</div>
-                                <script type="text/javascript">
-                                    document.getElementById('{{review.id}}').style.display = 'none'
-                                </script>
-                                <div id="srating-{{review.id}}"></div>
-                                <script type="text/javascript">
-                                    i = 0;
-                                    review = document.getElementById('{{review.id}}').innerHTML;
-                                    while( i < review) {
-                                        const para = document.createElement("p");
-                                        para.className = `fa fa-star checked`
-
-                                        const element = document.getElementById("srating-{{review.id}}");
-                                        element.appendChild(para);      
-                                        i++;
-                                    }
-                                </script>
-                            </div>
-                            <div class="col-12 col-md-6">
-                                {{review.position}}
-                            </div>
-                        </div>
-                      
-                    
-                    </div>
-                    <div class="accordion" id="{{review.id}}">
-                        <div class="card">
-                          <div class="card-header text-center" id="heading-{{review.id}}">
-                            <h5 class="mb-0">
-                              <button class="w3-button w3-theme btn-sm " type="button" data-toggle="collapse" data-target="#collapse-{{review.id}}" aria-controls="collapse-{{review.id}}">
-                                Read Review
-                              </button>
-                            </h5>
-                          </div>
-                      
-                        <div id="collapse-{{review.id}}" class="collapse" aria-labelledby="heading-{{review.id}}" data-parent="#{{review.id}}">
-                            <div class="card-body text-center">
-                                <table class="table">
-                                    <thead class="text-center thead-light">
-                                      <tr>
-                                        <th scope="col">Days per Week</th>
-                                        <th scope="col">Hours per Shift</th>
-                                        <th scope="col">Pay per Week</th>
-                                      </tr>
-                                    </thead>
-                                    <tbody class="text-center ">
-                                      <tr>
-                                        <td>{{review.days}}</td>
-                                        <td>{{review.hours}}</td>
-                                        <td>${{review.pay}}</td>
-                                      </tr>
-                                    </tbody>
-                                </table>
-                                <br>
-                                <table class="table">
-                                    <thead class="text-center thead-light">
-                                        <tr>
-                                          <th scope="col">Environment</th>
-                                          <th scope="col">Management</th>
-                                          <th scope="col">Work / Life</th>
-                                        </tr>
-                                      </thead>
-                                      <tbody class="text-center">
-                                        <tr>
-                                          <td>{{review.envo}}</td>
-                                          <td>{{review.mngmt}}</td>
-                                          <td>{{review.balance}}</td>
-                                        </tr>
-                                      </tbody>
-                                </table>
-                                <br>
-                                <table class="table">
-                                    <thead class="text-center thead-light">
-                                        <tr>
-                                          <th scope="col">Comments</th>
-                                        </tr>
-                                      </thead>
-                                      <tbody class="text-center">
-                                        <tr>
-                                          <td>{{review.comments}}</td>
-                                        </tr>
-                                      </tbody>
-                                </table>
-                                <br>
-                                <a href="#"> 
-                                    <button class="w3-button w3-theme btn-sm" type="button">
-                                        Find out more
-                                    </button>
-                                </a>
-                            </div>
-                          </div>
+                        <div class="col-12 col-md-6">
+                            <button type="button" id="pos_edit" class="w3-button w3-theme btn-sm edit"><i class="fa fa-pencil"></i> add/edit</button> 
                         </div>
                     </div>
-                </div>
-                <br>
-                <br>
-                {% endfor %}
+                    <div class="row">
+                        <div class="col-12 col-md-6 mt-1">
+                            {% if info.location %}
+                            <p id="location"><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> {{info.location}} </p>
+                            {% else %}
+                            <p id="location"><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> Location </p>
+                            {% endif %}
+                        </div>
+                        <div class="col-12 col-md-6 mb-2 mt-1">
+                            <button type="button" id="loc_edit" class="w3-button w3-theme btn-sm edit"><i class="fa fa-pencil"></i> add/edit</button>
+                        </div>
+                    </div>
+                </div> 
             </div>
-            {% endif %}
+            <br>
+            <!-- Accordion -->
+            <div class="w3-card w3-round">
+                <div class="w3-white">
+                    <button onclick="myFunction('Demo2')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i> My Reviews</button>
+                    <div id="Demo2" class="w3-hide w3-container">
+                        <p>Some other text..</p>
+                    </div>
+                </div>      
+            </div>
+            <br>
         </div>
-        
-       
-    
-    <!-- End Page Container -->
+        <!-- End Left Column -->
+        <!-- Right Colum -->
+        {% if reviews %}
+        <div class="col-12 col-md-5 offset-md-1">
+            {% for review in reviews %}
+            <div class="w3-card w3-round w3-white ">
+                <div class="w3-container ">
+                    <a href="#"> <h4 class="w3-center">{{ review.name }}</h4> </a> 
+                    <hr>
+                    <div class="row w3-center">
+                        <div class="col-12 col-md-6 starrr_rating">
+                            <div id="{{review.id}}">{{review.rating}}</div>
+                            <script type="text/javascript">
+                                document.getElementById('{{review.id}}').style.display = 'none'
+                            </script>
+                            <div id="srating-{{review.id}}"></div>
+                            <script type="text/javascript">
+                                i = 0;
+                                review = document.getElementById('{{review.id}}').innerHTML;
+                                while( i < review) {
+                                    const para = document.createElement("p");
+                                    para.className = `fa fa-star checked`
+
+                                    const element = document.getElementById("srating-{{review.id}}");
+                                    element.appendChild(para);      
+                                    i++;
+                                }
+                            </script>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            {{review.position}}
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion" id="{{review.id}}">
+                    <div class="card">
+                        <div class="card-header text-center" id="heading-{{review.id}}">
+                        <h5 class="mb-0">
+                            <button class="w3-button w3-theme btn-sm " type="button" data-toggle="collapse" data-target="#collapse-{{review.id}}" aria-controls="collapse-{{review.id}}">
+                            Read Review
+                            </button>
+                        </h5>
+                        </div>
+                    
+                    <div id="collapse-{{review.id}}" class="collapse" aria-labelledby="heading-{{review.id}}" data-parent="#{{review.id}}">
+                        <div class="card-body text-center">
+                            <table class="table">
+                                <thead class="text-center thead-light">
+                                    <tr>
+                                    <th scope="col">Days per Week</th>
+                                    <th scope="col">Hours per Shift</th>
+                                    <th scope="col">Pay per Week</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-center ">
+                                    <tr>
+                                    <td>{{review.days}}</td>
+                                    <td>{{review.hours}}</td>
+                                    <td>${{review.pay}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br>
+                            <table class="table">
+                                <thead class="text-center thead-light">
+                                    <tr>
+                                        <th scope="col">Environment</th>
+                                        <th scope="col">Management</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody class="text-center">
+                                    <tr>
+                                        <td>{{review.envo}}</td>
+                                        <td>{{review.mngmt}}</td>
+                                    </tr>
+                                    </tbody>
+                            </table>
+                            <br>
+                            <table class="table">
+                                <thead class="text-center thead-light">
+                                    <tr>
+                                        <th scope="col">Comments</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody class="text-center">
+                                    <tr>
+                                        <td>{{review.comments}}</td>
+                                    </tr>
+                                    </tbody>
+                            </table>
+                            <br>
+                            <a href="#"> 
+                                <button class="w3-button w3-theme btn-sm" type="button">
+                                    Find out more
+                                </button>
+                            </a>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+            {% endfor %}
+        </div>
+        {% endif %}
     </div>
-    <br>
+<!-- End Page Container -->
+</div>
+<br>
 {% endblock %}

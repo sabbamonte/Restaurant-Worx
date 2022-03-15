@@ -1,0 +1,11 @@
+{% extends "reviews/layout.html"%}
+{% load static %}
+
+{% block body %}
+<div class="container text-center" style="max-width:1400px;margin-top:80px">    
+    <h3>{{restaurant}}</h3>
+
+    <p>Recent reviews show the <bold>average weekly pay</bold> at <strong>{{restaurant}}</strong> being <strong>${{averages.average_pay}}</strong> for 4 days of work</p>
+</div>
+
+{% endblock %}

@@ -30,9 +30,8 @@ class Review(models.Model):
     pay = models.PositiveIntegerField()
     slow = models.PositiveIntegerField()
     busy = models.PositiveIntegerField()
-    envo = models.CharField(max_length=200)
-    mngmt = models.CharField(max_length=200)
-    balance = models.CharField(max_length=200)
+    envo = models.PositiveIntegerField()
+    mngmt = models.PositiveIntegerField()
     comments = models.CharField(max_length=500)
     rating = models.PositiveIntegerField()
 

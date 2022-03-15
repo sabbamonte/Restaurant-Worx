@@ -106,7 +106,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 busy: document.querySelector('#inputBtips').value,
                 envo: document.querySelector('#inputEnvo').value,
                 mngmt: document.querySelector('#inputMgmt').value,
-                balance: document.querySelector('#inputBal').value,
                 comments: document.querySelector('#inputComment').value,
                 rating: document.review.rating.value
             })

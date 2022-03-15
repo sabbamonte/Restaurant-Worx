@@ -8,6 +8,7 @@ from django.http import JsonResponse
 import json
 from django.views.decorators.csrf import csrf_exempt
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
+from statistics import mean
 
 from .models import User, Info, Review
 
@@ -138,12 +139,36 @@ def review(request):
         review.slow = data.get('slow')
         review.busy = data.get('busy')
         review.envo = data.get('envo')
+        print(review.envo)
         review.mngmt = data.get('mngmt')
-        review.balance = data.get('balance')
+        print(review.mngmt)
         review.comments = data.get('comments')
         review.rating = data.get('rating')
 
         review.save()
 
         return JsonResponse({"message": "Updated successfuly"}, status=201)
+
+@login_required(login_url='/login')
+@csrf_exempt
+def restaurant(request, restaurant):
+    if request.method == "GET":
+        all_reviews = Review.objects.filter(name=restaurant)
+        four_day_week = Review.objects.filter(name=restaurant, days=4)
+        total_pay, slow_pay, busy_pay = [], [], []
+
+        for review in four_day_week:
+            total_pay.append(review.pay)
+            
+        for review in all_reviews:
+            slow_pay.append(review.slow)
+            busy_pay.append(review.busy)
+        
+        all_averages = {
+            "average_pay": mean(total_pay),
+            "average_slow": mean(slow_pay),
+            "average_busy": mean(busy_pay)
+        }
+
+        return render(request, 'reviews/restaurant.html', {"restaurant": restaurant, "averages": all_averages})
 
