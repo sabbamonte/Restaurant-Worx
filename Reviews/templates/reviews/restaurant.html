@@ -3,9 +3,21 @@
 
 {% block body %}
 <div class="container text-center" style="max-width:1400px;margin-top:80px">    
-    <h3>{{restaurant}}</h3>
-
-    <p>Recent reviews show the <bold>average weekly pay</bold> at <strong>{{restaurant}}</strong> being <strong>${{averages.average_pay}}</strong> for 4 days of work</p>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">{{restaurant}}</h1>
+            <p class="lead">Average weekly pay for 4 days of work:</p>
+            <p class="lead">Server: ${{averages.server_average_pay}}</p>
+            <p class="lead">Bartender: ${{averages.bar_average_pay}}</p>
+            <p class="lead">Runner: ${{averages.run_average_pay}}</p>
+            <p class="lead">Busser: ${{averages.buss_average_pay}}</p>
+            <p class="lead">Barback: ${{averages.back_average_pay}}</p>
+            <br>
+            <footer>
+                $0 = no data available
+            </footer>
+        </div>
+      </div>
 </div>
 
 {% endblock %}

@@ -139,9 +139,7 @@ def review(request):
         review.slow = data.get('slow')
         review.busy = data.get('busy')
         review.envo = data.get('envo')
-        print(review.envo)
         review.mngmt = data.get('mngmt')
-        print(review.mngmt)
         review.comments = data.get('comments')
         review.rating = data.get('rating')
 
@@ -155,19 +153,47 @@ def restaurant(request, restaurant):
     if request.method == "GET":
         all_reviews = Review.objects.filter(name=restaurant)
         four_day_week = Review.objects.filter(name=restaurant, days=4)
-        total_pay, slow_pay, busy_pay = [], [], []
+        server_total_pay, bar_total_pay, buss_total_pay, run_total_pay, back_total_pay, envo, mngmt = [], [], [], [], [], [], []
 
         for review in four_day_week:
-            total_pay.append(review.pay)
+            if review.position == 'SERVER':
+                server_total_pay.append(review.pay)
+            elif review.position == 'BARTENDER':
+                bar_total_pay.append(review.pay)
+            elif review.position == 'BUSSER':
+                buss_total_pay.append(review.pay)
+            elif review.position == 'RUNNER':
+                run_total_pay.append(review.pay)
+            elif review.position == 'BARBACK':
+                back_total_pay.append(review.pay)
             
         for review in all_reviews:
-            slow_pay.append(review.slow)
-            busy_pay.append(review.busy)
+            envo.append(review.envo)
+            mngmt.append(review.mngmt)
+
+        server_average_pay, bar_average_pay, buss_average_pay, run_average_pay, back_average_pay = 0, 0, 0, 0, 0
+
+        if server_total_pay:
+            server_average_pay = mean(server_total_pay)
+            print(server_average_pay)
+        if bar_total_pay:
+            bar_average_pay = mean(bar_total_pay)
+        if buss_total_pay:
+            buss_average_pay = mean(buss_total_pay)
+        if run_total_pay:
+            run_average_pay = mean(run_total_pay)
+        if back_total_pay:
+            back_average_pay = mean(back_total_pay)
+
         
         all_averages = {
-            "average_pay": mean(total_pay),
-            "average_slow": mean(slow_pay),
-            "average_busy": mean(busy_pay)
+            "server_average_pay": server_average_pay,
+            "bar_average_pay":  bar_average_pay,
+            "buss_average_pay": buss_average_pay,
+            "run_average_pay": run_average_pay,
+            "back_average_pay": back_average_pay,
+            "average_envo": mean(envo),
+            "average_mngmt": mean(mngmt)
         }
 
         return render(request, 'reviews/restaurant.html', {"restaurant": restaurant, "averages": all_averages})

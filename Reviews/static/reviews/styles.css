@@ -41,3 +41,7 @@ select{
     width: 1.5em;
 }
 
+li {
+    list-style-type: none;
+}
+
