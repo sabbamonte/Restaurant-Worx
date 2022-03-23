@@ -5,19 +5,140 @@
 <div class="container text-center" style="max-width:1400px;margin-top:80px">    
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
-            <h1 class="display-4">{{restaurant}}</h1>
+            <h3 class="display-4">{{restaurant}}</h3>
+            <p><p class="fa fa-star checked">&nbsp;&nbsp;</p>{{averages.average_rating}} / 5</p>
             <p class="lead">Average weekly pay for 4 days of work:</p>
-            <p class="lead">Server: ${{averages.server_average_pay}}</p>
-            <p class="lead">Bartender: ${{averages.bar_average_pay}}</p>
-            <p class="lead">Runner: ${{averages.run_average_pay}}</p>
-            <p class="lead">Busser: ${{averages.buss_average_pay}}</p>
-            <p class="lead">Barback: ${{averages.back_average_pay}}</p>
+            <p class="lead">Server: <span class="bold">${{averages.server_average_pay}}</span> / Bartender: <span class="bold">${{averages.bar_average_pay}}</span></p>
+            <p class="lead"></p>
+            <button class="w3-button w3-theme btn-sm" type="button" data-toggle="collapse" data-target="#collapseEarnings" aria-expanded="false" aria-controls="collapseEarnings">
+               More
+            </button>
             <br>
-            <footer>
-                $0 = no data available
-            </footer>
+            <div class="collapse" id="collapseEarnings">  
+                <br>
+                <p class="lead">Runner: <span class="bold">${{averages.run_average_pay}}</span> / Busser: <span class="bold">${{averages.buss_average_pay}}</span>
+                 / Barback: <span class="bold">${{averages.back_average_pay}}</span></p>
+                 <br>
+                 <footer>
+                    $0 = no data available
+                </footer>
+            </div>
+            <br> <br>
+            <div class="row">
+                <div class="col-12 col-md-4">
+                    <p class="lead"> The average work hours are <span class="bold">{{averages.average_hours}}</span> per shift</p>
+                    <p>Hours may vary based on position</p>
+                </div>
+                <div class="col-12 col-md-4">
+                    <p class="lead"> Environment: {{averages.average_envo}} / 10</p>
+                </div>
+                <div class="col-12 col-md-4">
+                    <p class="lead"> Management: {{averages.average_mngmt}} / 10</p>
+                </div>
+            </div>
         </div>
-      </div>
-</div>
+    </div>
+    <div class="row">
+        {% for review in page_obj %}
+        <div class="col-12 col-md-4">
+            <div class="w3-card w3-round w3-white restaurant_card">
+                <div class="w3-container">
+                    <br>
+                    <div class="row w3-center">
+                        <div class="col-12 col-md-6 starrr_rating">
+                            <div id="{{review.id}}">{{review.rating}}</div>
+                            <script type="text/javascript">
+                                document.getElementById('{{review.id}}').style.display = 'none'
+                            </script>
+                            <div id="srating-{{review.id}}"></div>
+                            <script type="text/javascript">
+                                i = 0;
+                                review = document.getElementById('{{review.id}}').innerHTML;
+                                while( i < review) {
+                                    const para = document.createElement("p");
+                                    para.className = `fa fa-star checked`
 
+                                    const element = document.getElementById("srating-{{review.id}}");
+                                    element.appendChild(para);      
+                                    i++;
+                                }
+                            </script>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            {{review.position}}
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="card-body text-center">
+                        <table class="table">
+                            <thead class="text-center thead-light">
+                                <tr>
+                                <th scope="col">Days per Week</th>
+                                <th scope="col">Hours per Shift</th>
+                                <th scope="col">Pay per Week</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-center ">
+                                <tr>
+                                <td>{{review.days}}</td>
+                                <td>{{review.hours}}</td>
+                                <td>${{review.pay}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <br>
+                        <table class="table">
+                            <thead class="text-center thead-light">
+                                <tr>
+                                    <th scope="col">Environment</th>
+                                    <th scope="col">Management</th>
+                                </tr>
+                                </thead>
+                                <tbody class="text-center">
+                                <tr>
+                                    <td>{{review.envo}}</td>
+                                    <td>{{review.mngmt}}</td>
+                                </tr>
+                                </tbody>
+                        </table>
+                        <br>
+                        <table class="table">
+                            <thead class="text-center thead-light">
+                                <tr>
+                                    <th scope="col">Comments</th>
+                                </tr>
+                                </thead>
+                                <tbody class="text-center">
+                                <tr>
+                                    <td>{{review.comments}}</td>
+                                </tr>
+                                </tbody>
+                        </table>
+                        <br>
+                    </div>
+                </div>
+                <br>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <br> <br>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+            <li class="page-item disabled">
+                {% if page_obj.has_previous %}
+                    <li class="page-item enabled">
+                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                    </li>
+                {% endif %}
+            </li>
+            <li class="page-link"> Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</li>
+            <li class="page-item">
+                {% if page_obj.has_next %}
+                    <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+                {% endif %}
+            </li>
+        </ul>
+    </nav>
+</div>
 {% endblock %}

@@ -41,7 +41,11 @@ select{
     width: 1.5em;
 }
 
-li {
-    list-style-type: none;
+.bold {
+    font-weight: bold;
+}
+
+.restaurant_card {
+    height: 450px;
 }
 
