@@ -41,20 +41,29 @@
             </div>
             <br>
             <!-- Accordion -->
-            <div class="w3-card w3-round">
-                <div class="w3-white">
-                    <button class="w3-button w3-block w3-theme-l1 w3-left-align" id="my_reviews"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i> My Reviews</button>
-                    <div id="Demo2" class="w3-hide w3-container">
-                        <p>Some other text..</p>
-                    </div>
-                </div>      
+            <div class="accordion" id="my_reviews">
+                <div class="w3-card w3-round">
+                    <div class="w3-white" id="review_heading">
+                        <button class="w3-button w3-block w3-theme-l1 w3-left-align" id="my_reviews" type="button" data-toggle="collapse" data-target="#collapse_review" aria-expanded="true" aria-controls="collapse_review"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i> My Reviews</button>
+                    </div>      
+                    <div id="collapse_review" class="collapse" aria-labelledby="review_heading" data-parent="#my_reviews">
+                        {% for review in user_reviews %}
+                            <div class="card-header">
+                                <a role="button" class="my_review_button" name="{{review.id}}">
+                                    <h6>{{review.name}} / {{review.position}}</h6>
+                                    <p class="fa fa-star checked"></p>{{review.rating}} / 5
+                                </a> 
+                            </div>
+                        {% endfor %}
+                      </div>
+                </div>
             </div>
             <br>
         </div>
         <!-- End Left Column -->
         <!-- Right Colum -->
         {% if reviews %}
-        <div class="col-12 col-md-6 offset-md-1">
+        <div class="col-12 col-md-6 offset-md-1" id="show_review">
             {% for review in page_obj %}
             <div class="w3-card w3-round w3-white">
                 <div class="w3-container ">
@@ -94,7 +103,6 @@
                         </button>
                     </h5>
                     </div>
-                    
                     <div id="collapse-{{review.id}}" class="collapse" aria-labelledby="heading-{{review.id}}" data-parent="#{{review.id}}">
                         <div class="card-body text-center">
                             <table class="table">

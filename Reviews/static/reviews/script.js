@@ -1,18 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
     
-    // Accordion
-    function myFunction(id) {
-        var x = document.getElementById(id);
-        if (x.className.indexOf("w3-show") == -1) {
-            x.className += " w3-show";
-            x.previousElementSibling.className += " w3-theme-d1";
-        } else { 
-            x.className = x.className.replace("w3-show", "");
-            x.previousElementSibling.className = 
-            x.previousElementSibling.className.replace(" w3-theme-d1", "");
-        }
-    }
-
     // Used to toggle the menu on smaller screens when clicking on the menu button
     function openNav() {
         var x = document.getElementById("navDemo");
@@ -23,14 +10,35 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    // Select My Reviews button
+    review_button = document.querySelectorAll('.my_review_button')
+    review_button.forEach((review) => {
+        review.addEventListener('click', () => {
+            show_review(review.name)
+            console.log(review.name)
+        })
+    
+    })
+
     // Select all edit buttons and pass them to function
     add_edit = document.querySelectorAll('.edit')
     add_edit.forEach((button) => {
         button.addEventListener('click', () => {
             add_edit_info(button.id)
-            console.log(button.id)
         })
     })
+
+    // Function to show the selected review from my reviews
+    function show_review(review) {
+        fetch(`/show/${review}`)
+        .then(response => response.json())
+        .then(review => {
+            console.log(review.name)
+            Array.prototype.forEach.call(review, rev => {
+                console.log(rev.name)
+            });
+        });
+    }
     
     // Create form to submit edited positon and location to database
     function add_edit_info(add_edit) {

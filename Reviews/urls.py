@@ -11,7 +11,8 @@ urlpatterns = [
 
 	# API paths
 	path("add", views.add, name="add"),
-	path("review", views.review, name="review")
+	path("review", views.review, name="review"),
+	path("show/<int:review_id>", views.show, name="show")
 ]
 
 	

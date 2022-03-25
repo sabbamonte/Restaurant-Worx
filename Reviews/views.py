@@ -18,15 +18,16 @@ from .models import User, Info, Review
 @csrf_exempt
 def index(request):
     if request.method == 'GET':
+        user_reviews = Review.objects.filter(user=request.user)
         reviews = Review.objects.all().order_by('-id')
         paginator = Paginator(reviews, 10)
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
         try:
             info = Info.objects.get(user=request.user)
-            return render(request, 'reviews/index.html', {"info": info, "reviews": reviews, "page_obj": page_obj})
+            return render(request, 'reviews/index.html', {"info": info, "reviews": reviews, "page_obj": page_obj, "user_reviews": user_reviews})
         except ObjectDoesNotExist:
-            return render(request, 'reviews/index.html', {"reviews": reviews, "page_obj": page_obj})
+            return render(request, 'reviews/index.html', {"reviews": reviews, "page_obj": page_obj, "user_reviews": user_reviews})
             
 # Try to log user in
 @csrf_exempt
@@ -97,6 +98,15 @@ def register(request):
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect(reverse("index"))
+
+# Show review selected from my reviews
+@login_required(login_url='/login')
+def show(request, review_id):
+    if request.method == "GET":
+        data = Review.objects.filter(id=review_id).values()
+
+        return JsonResponse({"data": list(data)})
+
 
 # Add/Edit position or location
 @login_required(login_url='/login')
