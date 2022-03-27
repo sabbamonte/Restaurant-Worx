@@ -105,7 +105,22 @@ def show(request, review_id):
     if request.method == "GET":
         data = Review.objects.filter(id=review_id).values()
 
-        return JsonResponse({"data": list(data)})
+        return JsonResponse({"review": list(data)})
+
+# Delete Review
+@login_required(login_url='/login')
+@csrf_exempt
+def delete(request, review_id):
+    if request.method == "GET":
+        review = Review.objects.filter(id=review_id).values()
+
+        return JsonResponse({"review": list(review)})
+
+    if request.method == "DELETE":
+        Review.objects.filter(id=review_id).delete()
+
+        return JsonResponse({"message": "Deleted successfuly"}, status=201)
+
 
 
 # Add/Edit position or location

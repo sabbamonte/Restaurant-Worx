@@ -15,7 +15,6 @@ document.addEventListener('DOMContentLoaded', function() {
     review_button.forEach((review) => {
         review.addEventListener('click', () => {
             show_review(review.name)
-            console.log(review.name)
         })
     
     })
@@ -27,18 +26,6 @@ document.addEventListener('DOMContentLoaded', function() {
             add_edit_info(button.id)
         })
     })
-
-    // Function to show the selected review from my reviews
-    function show_review(review) {
-        fetch(`/show/${review}`)
-        .then(response => response.json())
-        .then(review => {
-            console.log(review.name)
-            Array.prototype.forEach.call(review, rev => {
-                console.log(rev.name)
-            });
-        });
-    }
     
     // Create form to submit edited positon and location to database
     function add_edit_info(add_edit) {
@@ -118,5 +105,98 @@ document.addEventListener('DOMContentLoaded', function() {
                 rating: document.review.rating.value
             })
         })
+    }
+
+    // Function to show the selected review from my reviews
+    function show_review(review) {
+        fetch(`/show/${review}`)
+        .then(response => response.json())
+        .then(review => {
+            Array.prototype.forEach.call(review.review, rev => {
+                document.getElementById('show_review').innerHTML = 
+                `<div class="card">
+                    <div class="card-header text-center">
+                        <div class="row">
+                            <div class=col-12 col-md-1>
+                                <a role="button" href="" class="w3-button w3-theme btn-sm float-right">x</a>
+                            </div>
+                        </div>
+                        <a href="restaurant/${rev.name}"> <h4 class="w3-center">${rev.name}</h4> </a>
+                        <hr>
+                        <div class="row w3-center">
+                            <div class="col-12 col-md-6 text-center">
+                                <p class="fa fa-star checked"></p> ${rev.rating} / 5
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <p>${rev.position}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body text-center">
+                        <table class="table">
+                            <thead class="text-center thead-light">
+                            <tr>
+                            <th scope="col">Days per Week</th>
+                            <th scope="col">Hours per Shift</th>
+                            <th scope="col">Pay per Week</th>
+                            </tr>
+                            </thead>
+                            <tbody class="text-center ">
+                                <tr>
+                                <td>${rev.days}</td>
+                                <td>${rev.hours}</td>
+                                <td>$${rev.pay}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <br>
+                        <table class="table">
+                        <thead class="text-center thead-light">
+                            <tr>
+                                <th scope="col">Environment</th>
+                                <th scope="col">Management</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-center">
+                            <tr>
+                                <td>${rev.envo}</td>
+                                <td>${rev.mngmt}</td>
+                            </tr>
+                        </tbody>
+                        </table>
+                        <br>
+                        <table class="table">
+                            <thead class="text-center thead-light">
+                            <tr>
+                                <th scope="col">Comments</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-center">
+                            <tr>
+                                <td>${rev.comments}</td>
+                            </tr>
+                        </tbody>
+                        </table>
+                        <div class="col-12">
+                            <button class="w3-button w3-theme btn-sm" id="${rev.id}" type="button">
+                                Delete Review
+                            </button>
+                        </div>
+                    </div>
+                </div> `
+
+                button = document.getElementById(rev.id)
+                button.addEventListener('click', () => {
+                    delete_review(button.id)
+                })
+            })
+        });
+    }
+
+    function delete_review(review) {
+        fetch(`delete/${review}`, {
+            method: 'DELETE'
+        })
+        window.location.reload();
     }
 });
