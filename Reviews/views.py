@@ -180,51 +180,64 @@ def review(request):
 @csrf_exempt
 def restaurant(request, restaurant):
     if request.method == "GET":
-        all_reviews = Review.objects.filter(name=restaurant)
+        all_reviews = Review.objects.filter(name=restaurant).order_by('-id')
         paginator = Paginator(all_reviews, 3)
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
-        four_day_week = Review.objects.filter(name=restaurant, days=4)
-        server_total_pay, bar_total_pay, buss_total_pay, run_total_pay, back_total_pay, envo, mngmt, hours, rating = [], [], [], [], [], [], [], [], []
 
-        for review in four_day_week:
-            if review.position == 'SERVER':
-                server_total_pay.append(review.pay)
-            elif review.position == 'BARTENDER':
-                bar_total_pay.append(review.pay)
-            elif review.position == 'BUSSER':
-                buss_total_pay.append(review.pay)
-            elif review.position == 'RUNNER':
-                run_total_pay.append(review.pay)
-            elif review.position == 'BARBACK':
-                back_total_pay.append(review.pay)
+        server_pay, bar_pay, busser_pay, runner_pay, back_pay = 0, 0, 0, 0, 0
+        server_days, bar_days, busser_days, runner_days, back_days = 0, 0, 0, 0, 0
+        envo, mngmt, hours, rating = [], [], [], []
             
         for review in all_reviews:
+            if review.position == 'SERVER':
+                server_pay += review.pay
+                server_days += review.days
+            elif review.position == 'BARTENDER':
+                bar_pay += review.pay
+                bar_days += review.days
+            elif review.position == 'BUSSER':
+                busser_pay += review.pay
+                busser_days += review.days
+            elif review.position == 'RUNNER':
+                runner_pay += review.pay
+                runner_days += review.days
+            elif review.position == 'BARBACK':
+                back_pay += review.pay
+                back_days += review.days
+
             envo.append(review.envo)
             mngmt.append(review.mngmt)
             rating.append(review.rating)
             hours.append(review.hours)
+            
+        try:
+            serv_four_day = round(server_pay/server_days * 4)
+        except ZeroDivisionError:
+            serv_four_day = 0
+        try:
+            bar_four_day = round(bar_pay/bar_days * 4)
+        except ZeroDivisionError:
+            bar_four_day = 0
+        try:
+            busser_four_day = round(busser_pay/busser_days * 4)
+        except ZeroDivisionError:
+            busser_four_day = 0
+        try:
+            runner_four_day = round(runner_pay/runner_days * 4)
+        except ZeroDivisionError:
+            runner_four_day = 0
+        try:
+            back_four_day = round(back_pay/back_days * 4)
+        except ZeroDivisionError:
+            back_four_day = 0
 
-        server_average_pay, bar_average_pay, buss_average_pay, run_average_pay, back_average_pay = 0, 0, 0, 0, 0
-
-        if server_total_pay:
-            server_average_pay = mean(server_total_pay)
-        if bar_total_pay:
-            bar_average_pay = mean(bar_total_pay)
-        if buss_total_pay:
-            buss_average_pay = mean(buss_total_pay)
-        if run_total_pay:
-            run_average_pay = mean(run_total_pay)
-        if back_total_pay:
-            back_average_pay = mean(back_total_pay)
-
-        
         all_averages = {
-            "server_average_pay": server_average_pay,
-            "bar_average_pay":  bar_average_pay,
-            "buss_average_pay": buss_average_pay,
-            "run_average_pay": run_average_pay,
-            "back_average_pay": back_average_pay,
+            "serv_four_day": serv_four_day,
+            "bar_four_day": bar_four_day,
+            "busser_four_day": busser_four_day,
+            "runner_four_day": runner_four_day,
+            "back_four_day": back_four_day,
             "average_envo": mean(envo),
             "average_mngmt": mean(mngmt),
             "average_hours": mean(hours),

@@ -8,7 +8,7 @@
             <h3 class="display-4">{{restaurant}}</h3>
             <p><p class="fa fa-star checked">&nbsp;&nbsp;</p>{{averages.average_rating}} / 5</p>
             <p class="lead">Average weekly pay for 4 days of work:</p>
-            <p class="lead">Server: <span class="bold">${{averages.server_average_pay}}</span> / Bartender: <span class="bold">${{averages.bar_average_pay}}</span></p>
+            <p class="lead">Server: <span class="bold">${{averages.serv_four_day}}</span> / Bartender: <span class="bold">${{averages.bar_four_day}}</span></p>
             <p class="lead"></p>
             <button class="w3-button w3-theme btn-sm" type="button" data-toggle="collapse" data-target="#collapseEarnings" aria-expanded="false" aria-controls="collapseEarnings">
                More
@@ -16,8 +16,8 @@
             <br>
             <div class="collapse" id="collapseEarnings">  
                 <br>
-                <p class="lead">Runner: <span class="bold">${{averages.run_average_pay}}</span> / Busser: <span class="bold">${{averages.buss_average_pay}}</span>
-                 / Barback: <span class="bold">${{averages.back_average_pay}}</span></p>
+                <p class="lead">Runner: <span class="bold">${{averages.runner_four_day}}</span> / Busser: <span class="bold">${{averages.busser_four_day}}</span>
+                 / Barback: <span class="bold">${{averages.back_four_day}}</span></p>
                  <br>
                  <footer>
                     $0 = no data available
