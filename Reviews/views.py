@@ -133,18 +133,12 @@ def add(request):
         all_info = Info.objects.filter(user=request.user)
         if not all_info:
             info = Info()
-            if data.get('position'):
-                info.position = data.get('position')
-            else:
-                info.location = data.get('location')
+            info.position = data.get('position').upper()
             info.user = request.user
             info.save()
         else: 
             get_info = Info.objects.get(user=request.user)
-            if data.get('position'):
-                get_info.position = data.get('position')
-            else:
-                get_info.location = data.get('location')
+            get_info.position = data.get('position').upper()
             get_info.save()
 
         return JsonResponse({"message": "Updated successfuly"}, status=201)
@@ -210,7 +204,7 @@ def restaurant(request, restaurant):
             mngmt.append(review.mngmt)
             rating.append(review.rating)
             hours.append(review.hours)
-            
+
         try:
             serv_four_day = round(server_pay/server_days * 4)
         except ZeroDivisionError:

@@ -24,6 +24,10 @@
     color: #505050;
 }
 
+h6 {
+    font-style: italic;
+}
+
 .rating {
     direction: rtl;
   }

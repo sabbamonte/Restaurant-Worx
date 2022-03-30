@@ -11,7 +11,6 @@ class Info(models.Model):
     objects = models.Manager()
     user = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
     position = models.CharField(max_length=200, blank=True)
-    location = models.CharField(max_length=200, blank=True)
 
     def serialize(self):
         return {

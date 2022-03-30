@@ -20,27 +20,27 @@
         html, body, h1, h2, h3, h4, h5 {font-family: "Chivo", sans-serif}
         </style>
     </head>
-    <body class="w3-theme-l5">
+    <body class="w3-theme-l5" >
+        <br>
         <!-- Navbar -->
-        <div class="jumbotron w3-theme-l5">
-            <h1 class="display-4 text-center"><a class="title" type="button" href='{% url "index" %}' style="text-decoration:none;">ResWorx</a></h1>
-            <ul class="nav justify-content-center">
+        <h1 class="display-4 text-center"><a class="title" type="button" href='{% url "index" %}' style="text-decoration:none;">ResWorx</a></h1>
+        <h6 class="text-center">Help Others Make A Decision</h6>
+        <br>
+        <ul class="nav justify-content-center">
+            <li class="nav-item">
+                {% if user.is_authenticated %}
+                <a class="nav-link" href='{% url "review" %}' title="Review">REVIEW YOUR WORK</a>
                 <li class="nav-item">
-                    {% if user.is_authenticated %}
-                    <a class="nav-link" href='{% url "review" %}' title="Review">REVIEW YOUR WORK</a>
-                    <li class="nav-item">
-                        <a class="nav-link" href='{% url "logout" %}' title="Logout">LOG OUT</a> 
-                    {% else %}
-                        <a class="nav-link" href='{% url "logout" %}' title="Login"> LOG IN</a> 
-                    {% endif %}
-                    </li>
+                    <a class="nav-link" href='{% url "logout" %}' title="Logout">LOG OUT</a> 
+                {% else %}
+                    <a class="nav-link" href='{% url "logout" %}' title="Login"> LOG IN</a> 
+                {% endif %}
                 </li>
-            </ul>
-            <hr>
-        </div>
-            
-      
-
+            </li>
+        </ul>
+        <br>
+        <hr style="width:1200px; margin:auto;">
+        <br><br>
         <!-- Navbar on small screens -->
         <div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large">
             <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 1</a>

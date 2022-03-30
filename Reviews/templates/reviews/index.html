@@ -3,11 +3,11 @@
 
 {% block body %}
 <!-- Page Container -->
-<div class="container" style="max-width:1400px">    
+<div class="container" style="max-width:1400px;">    
     <!-- The Grid -->
     <div class="row col-12">
         <!-- Left Column -->
-        <div class="col-12 col-md-4 profile">
+        <div class="col-12 col-md-4 profile offset-sm-1">
             <!-- Profile -->
             <div class="w3-card w3-round w3-white">
                 <div class="w3-container">
@@ -22,21 +22,10 @@
                             {% endif %}
                         </div>
                         <div class="col-12 col-md-6">
-                            <button type="button" id="pos_edit" class="w3-button w3-theme btn-sm edit"><i class="fa fa-pencil"></i> add/edit</button> 
+                            <button type="button" id="pos_edit" class="w3-button w3-theme btn-sm float-right edit"><i class="fa fa-pencil"></i> add/edit</button> 
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-12 col-md-6 mt-1">
-                            {% if info.location %}
-                            <p id="location"><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> {{info.location}} </p>
-                            {% else %}
-                            <p id="location"><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> Location </p>
-                            {% endif %}
-                        </div>
-                        <div class="col-12 col-md-6 mb-2 mt-1">
-                            <button type="button" id="loc_edit" class="w3-button w3-theme btn-sm edit"><i class="fa fa-pencil"></i> add/edit</button>
-                        </div>
-                    </div>
+                    <br>
                 </div> 
             </div>
             <br>
@@ -63,7 +52,7 @@
         <!-- End Left Column -->
         <!-- Right Colum -->
         {% if reviews %}
-        <div class="col-12 col-md-6 offset-md-1" id="show_review">
+        <div class="col-12 col-md-5 offset-md-1" id="show_review">
             {% for review in page_obj %}
             <div class="w3-card w3-round w3-white">
                 <div class="w3-container ">
