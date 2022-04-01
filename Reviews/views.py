@@ -33,8 +33,7 @@ def index(request):
 @login_required(login_url='/login')   
 def search(request):
     if request.method == "GET":
-        name = request.GET.get('search')
-        name = name.upper()
+        name = request.GET.get('search').upper()
         
         restaurant = Review.objects.filter(name=name)
         all_restaurants = Review.objects.all()

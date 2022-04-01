@@ -5,15 +5,18 @@
 <div class="container" style="max-width:1400px;">   
     <div class="row text-center">
         <div class="col-12">
-            <p>Did you mean</p>
+            {% if not results %}
+            <h3>Oops. No restaurant found under that name</h3>
+            <a href="{% url 'review'%}">Be the first to write a review for it</a>
+            {% else %}
+            <h3>Did you mean</h3>
             {% for result in results %}
-               
-                <ul>
-                    <li>{{result}}</li>
+                <ul class="list-group">
+                    <a href="{% url 'restaurant' result %}" style="text-decoration: none;"><li class="list-group-item">{{result}}</li></a>
                 </ul>
             {% endfor %}
+            {% endif %}
         </div>
     </div>
-   
 </div>
 {% endblock %}
