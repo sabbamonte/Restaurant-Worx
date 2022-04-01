@@ -114,9 +114,9 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(review => {
             Array.prototype.forEach.call(review.review, rev => {
                 document.getElementById('show_review').innerHTML = 
-                `<div class="card">
-                    <div class="card-header text-center">
-                        <div class="row">
+                `<div class="w3-card w3-round w3-white">
+                    <div class="w3-container text-center">
+                        <div class="row w3-center">
                             <div class=col-12 col-md-1>
                                 <a role="button" href="" class="w3-button w3-theme btn-sm float-right">x</a>
                             </div>

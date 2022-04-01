@@ -28,76 +28,27 @@ def index(request):
             return render(request, 'reviews/index.html', {"info": info, "reviews": reviews, "page_obj": page_obj, "user_reviews": user_reviews})
         except ObjectDoesNotExist:
             return render(request, 'reviews/index.html', {"reviews": reviews, "page_obj": page_obj, "user_reviews": user_reviews})
-            
-# Try to log user in
-@csrf_exempt
-def login_view(request):
-    if request.method == "POST":
 
-        username = request.POST["username"]
-        if not username:
-            return render(request, "reviews/login.html", {
-                "message": "Invalid username and/or password."
-            })
-        password = request.POST["password"]
-        if not password:
-            return render(request, "reviews/login.html", {
-                "message": "Invalid username and/or password."
-            })
+# Search for restaurant        
+@login_required(login_url='/login')   
+def search(request):
+    if request.method == "GET":
+        name = request.GET.get('search')
+        name = name.upper()
+        
+        restaurant = Review.objects.filter(name=name)
+        all_restaurants = Review.objects.all()
 
-        # Check if inputs match database
-        user = authenticate(request, username=username, password=password)
+        if restaurant:
+            return render(request, 'reviews/restaurant.html', {"restaurant": name})
 
-        if user is not None:
-            login(request, user)
-            return HttpResponseRedirect(reverse("index"))
         else:
-            return render(request, "reviews/login.html", {
-                "message": "Invalid username and/or password."
-            })
-    else:
-        return render(request, "reviews/login.html")
-
-# Register new users
-@csrf_exempt
-def register(request):
-    if request.method == "POST":
-        username = request.POST["username"]
-        if not username:
-            return render(request, "reviews/register.html", {
-                "message": "Please choose a username."
-            })
-        email = request.POST["email"]
-
-        # Error check that password matches
-        password = request.POST["password"]
-        if not password:
-            return render(request, "reviews/register.html", {
-                "message": "Please choose a password."
-            })
-        confirmation = request.POST["confirmation"]
-        if password != confirmation:
-            return render(request, "reviews/register.html", {
-                "message": "Passwords must match."
-            })
-
-        # Error check if username already taken
-        try:
-            user = User.objects.create_user(username, email, password)
-            user.save()
-        except IntegrityError:
-            return render(request, "reviews/register.html", {
-                "message": "Username already taken."
-            })
-        login(request, user)
-        return HttpResponseRedirect(reverse("index"))
-    else:
-        return render(request, "reviews/register.html")
-
-# Log users out
-def logout_view(request):
-    logout(request)
-    return HttpResponseRedirect(reverse("index"))
+            results = []
+            for res in all_restaurants:
+                if name in res.name:
+                    results.append(res.name)
+            return render(request, 'reviews/search.html', {"results": results})
+        
 
 # Show review selected from my reviews
 @login_required(login_url='/login')
@@ -240,3 +191,72 @@ def restaurant(request, restaurant):
 
         return render(request, 'reviews/restaurant.html', {"restaurant": restaurant, "averages": all_averages, "page_obj": page_obj})
 
+# Try to log user in
+@csrf_exempt
+def login_view(request):
+    if request.method == "POST":
+
+        username = request.POST["username"]
+        if not username:
+            return render(request, "reviews/login.html", {
+                "message": "Invalid username and/or password."
+            })
+        password = request.POST["password"]
+        if not password:
+            return render(request, "reviews/login.html", {
+                "message": "Invalid username and/or password."
+            })
+
+        # Check if inputs match database
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            return HttpResponseRedirect(reverse("index"))
+        else:
+            return render(request, "reviews/login.html", {
+                "message": "Invalid username and/or password."
+            })
+    else:
+        return render(request, "reviews/login.html")
+
+# Register new users
+@csrf_exempt
+def register(request):
+    if request.method == "POST":
+        username = request.POST["username"]
+        if not username:
+            return render(request, "reviews/register.html", {
+                "message": "Please choose a username."
+            })
+        email = request.POST["email"]
+
+        # Error check that password matches
+        password = request.POST["password"]
+        if not password:
+            return render(request, "reviews/register.html", {
+                "message": "Please choose a password."
+            })
+        confirmation = request.POST["confirmation"]
+        if password != confirmation:
+            return render(request, "reviews/register.html", {
+                "message": "Passwords must match."
+            })
+
+        # Error check if username already taken
+        try:
+            user = User.objects.create_user(username, email, password)
+            user.save()
+        except IntegrityError:
+            return render(request, "reviews/register.html", {
+                "message": "Username already taken."
+            })
+        login(request, user)
+        return HttpResponseRedirect(reverse("index"))
+    else:
+        return render(request, "reviews/register.html")
+
+# Log users out
+def logout_view(request):
+    logout(request)
+    return HttpResponseRedirect(reverse("index"))

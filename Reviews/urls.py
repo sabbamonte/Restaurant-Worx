@@ -8,6 +8,7 @@ urlpatterns = [
 	path("register", views.register, name="register"),
 	path("review", views.review, name="review" ),
 	path("restaurant/<str:restaurant>", views.restaurant, name="restaurant"),
+	path("search", views.search, name="search"),
 
 	# API paths
 	path("add", views.add, name="add"),

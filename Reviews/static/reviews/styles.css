@@ -28,6 +28,10 @@ h6 {
     font-style: italic;
 }
 
+.flex {
+    display: flex;
+ }
+
 .rating {
     direction: rtl;
   }
