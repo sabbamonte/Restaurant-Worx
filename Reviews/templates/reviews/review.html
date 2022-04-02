@@ -9,11 +9,22 @@
         <h3>Info & Average Work Week</h3>
         <br>
         <div class="row">
-            <div class="col-12 col-md-3 ">
+            <div class="col-12 col-md-2 ">
                 <label for="inputName">Restaurant Name</label>
                 <input type="textarea" class="form-control" id="inputName" name="Name" required="required" placeholder="">
             </div>
-            <div class="col-12 col-md-3">
+            <div class="col-12 col-md-2">
+                <label for="inputAddress">Address</label>
+                <input type="textarea" class="form-control" id="inputAddress" name="Address" required="required" placeholder="">
+            </div>
+            <div class="col-12 col-md-1">
+                <label for="inputZip">Zip Code</label>
+                <input type="textarea" class="form-control" id="inputZip" name="Zip" required="required" placeholder="">
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-12 col-md-2">
                 <label for="inputPosition">Position</label>
                 <select class="form-control required" id="inputPosition" required="required">
                     <option disabled selected value="">Choose...</option>
@@ -25,9 +36,6 @@
                     <option>Other</option>
                 </select>
             </div>
-        </div>
-        <br>
-        <div class="row">
             <div class="col-12 col-md-2">
                 <label for="inputDays">Workdays</label>
                 <select class="form-control required" id="inputDays" required="required">
@@ -66,14 +74,14 @@
                     <option>10+</option>
                 </select>
             </div>
+        </div>
+        <br>
+        <div class="row">
             <div class="col-12 col-md-2 ">
                 <label for="inputPay">Pay per Week</label>
                 <input type="number" class="form-control" id="inputPay" name="Pay" required="required" placeholder="">
-                <br>
             </div>
-        </div>
-        
-        <div class="row">
+            
             <div class="col-12 col-md-2">
                 <label for="inputStips">Slow Shift</label>
                 <input type="number" class="form-control" id="inputStips" name="Stips" required="required" placeholder="Tip amount">

@@ -30,7 +30,6 @@ ALLOWED_HOSTS = []
 
 AUTH_USER_MODEL = 'Reviews.User'
 
-
 # Application definition
 
 INSTALLED_APPS = [

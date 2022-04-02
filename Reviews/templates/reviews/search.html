@@ -2,9 +2,9 @@
 {% load static %}
 
 {% block body %}
-<div class="container" style="max-width:1400px;">   
-    <div class="row text-center">
-        <div class="col-12">
+<div class="container text-center" style="max-width:1400px;">   
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8">
             {% if not results %}
             <h3>Oops. No restaurant found under that name</h3>
             <a href="{% url 'review'%}">Be the first to write a review for it</a>

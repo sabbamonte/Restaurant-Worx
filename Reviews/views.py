@@ -1,5 +1,5 @@
 from django.contrib.auth import authenticate, login, logout
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
@@ -39,7 +39,7 @@ def search(request):
         all_restaurants = Review.objects.all()
 
         if restaurant:
-            return render(request, 'reviews/restaurant.html', {"restaurant": name})
+            return redirect("restaurant", restaurant=name)
 
         else:
             results = []
@@ -105,6 +105,8 @@ def review(request):
         review = Review()
         review.user = request.user
         review.name = data.get('name').upper()
+        review.address = data.get('address').upper()
+        review.zip = data.get('zip')
         review.position = data.get('position').upper()
         review.days = data.get('days')
         review.hours = data.get('hours')

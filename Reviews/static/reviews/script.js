@@ -93,6 +93,8 @@ document.addEventListener('DOMContentLoaded', function() {
             method: 'POST',
             body: JSON.stringify({
                 name: document.querySelector('#inputName').value,
+                address: document.querySelector('#inputAddress').value,
+                zip: document.querySelector('#inputZip').value,
                 position: document.querySelector('#inputPosition').value,
                 days: document.querySelector('#inputDays').value,
                 hours: document.querySelector('#inputHours').value,
