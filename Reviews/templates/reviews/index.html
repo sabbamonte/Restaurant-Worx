@@ -57,7 +57,7 @@
             <div class="w3-card w3-round w3-white">
                 <div class="w3-container ">
                     <a href="{% url 'restaurant' review.name %}"> <h4 class="w3-center">{{ review.name }}</h4> </a> 
-                    <p class="text-center" style="font-size: small;">by {{request.user}}</p>
+                    <p class="text-center" style="font-size: small;">{{review.address}}, NY, {{review.zip}}</p>
                     <hr>
                     <div class="row w3-center">
                         <div class="col-12 col-md-6 starrr_rating">

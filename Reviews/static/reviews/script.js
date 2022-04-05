@@ -118,12 +118,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.getElementById('show_review').innerHTML = 
                 `<div class="w3-card w3-round w3-white">
                     <div class="w3-container text-center">
+                    <br>
                         <div class="row w3-center">
                             <div class=col-12 col-md-1>
                                 <a role="button" href="" class="w3-button w3-theme btn-sm float-right">x</a>
                             </div>
-                        </div>
                         <a href="restaurant/${rev.name}"> <h4 class="w3-center">${rev.name}</h4> </a>
+                        <p class="text-center" style="font-size: small;">${rev.address}, NY, ${rev.zip}</p>
+                        </div>
                         <hr>
                         <div class="row w3-center">
                             <div class="col-12 col-md-6 text-center">

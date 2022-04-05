@@ -3,12 +3,12 @@
 
 {% block body %}
 
-<div class="w3-container w3-content" style="max-width:1400px"> 
+<div class="w3-container w3-content text-center justify-content-center" style="max-width:1400px"> 
     <div id="alert" role="alert"></div>
     <form id="review" name="review" action="{% url 'index' %}">
         <h3>Info & Average Work Week</h3>
         <br>
-        <div class="row">
+        <div class="row justify-content-center">
             <div class="col-12 col-md-2 ">
                 <label for="inputName">Restaurant Name</label>
                 <input type="textarea" class="form-control" id="inputName" name="Name" required="required" placeholder="">
@@ -17,13 +17,13 @@
                 <label for="inputAddress">Address</label>
                 <input type="textarea" class="form-control" id="inputAddress" name="Address" required="required" placeholder="">
             </div>
-            <div class="col-12 col-md-1">
+            <div class="col-12 col-md-2">
                 <label for="inputZip">Zip Code</label>
                 <input type="textarea" class="form-control" id="inputZip" name="Zip" required="required" placeholder="">
             </div>
         </div>
         <br>
-        <div class="row">
+        <div class="row justify-content-center">
             <div class="col-12 col-md-2">
                 <label for="inputPosition">Position</label>
                 <select class="form-control required" id="inputPosition" required="required">
@@ -76,7 +76,7 @@
             </div>
         </div>
         <br>
-        <div class="row">
+        <div class="row justify-content-center">
             <div class="col-12 col-md-2 ">
                 <label for="inputPay">Pay per Week</label>
                 <input type="number" class="form-control" id="inputPay" name="Pay" required="required" placeholder="">
@@ -92,7 +92,7 @@
             </div>
         </div>
         <br>
-        <div class="row">
+        <div class="row justify-content-center">
             <div class="col-12 col-md-2">
                 <label for="inputEnvo">How's the Environment?</label>
                 <select class="form-control required" id="inputEnvo" required="required">
@@ -127,19 +127,19 @@
             </div>
         </div>
         <br>
-        <div class="row">
+        <div class="row justify-content-center">
             <div class="col-12 col-md-6">
                 <label for="inputComment">Comments/More Details</label>
-                <textarea rows="5" class="form-control" id="inputComment" placeholder="very stressful, great work/life balance, awesome co-workers, everybody sucks"></textarea>
+                <textarea rows="5" class="form-control text-center" id="inputComment" placeholder="very stressful, awesome co-workers, everybody sucks, I'd 86 this place"></textarea>
             </div>
         </div>
         <br>
-        <div class="row">
-            <div class="rating col-12 col-md-4"> 
-                <h4><label for="inputRating"> &ensp; &ensp; &ensp; Overall Rating </label></h4>
+        <div class="row justify-content-center">
+            <div class="rating col-12 col-md-5"> 
+                <h4><label for="inputRating"> Overall Rating </label></h4>
             </div>
         </div>
-        <div class="row">
+        <div class="row justify-content-center">
             <div class="rating col-12 col-md-4" id="stars"> 
                 <input type="radio" name="rating" value="5" id="5">
                 <label for="5">☆</label> 
@@ -152,12 +152,9 @@
                 <input type="radio" name="rating" value="1" id="1">
                 <label for="1">☆</label>
             </div>
-        <div class="row">
-            
         </div>
-        </div>
-        <div class="row">
-            <div class="col-12 col-md-1 float-md-right">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-1">
                 <button type="submit" id="review_sub" class="btn btn-dark">Submit</button>
             </div>
         </div>

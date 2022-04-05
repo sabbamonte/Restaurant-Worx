@@ -6,6 +6,7 @@
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
             <h3 class="display-4">{{restaurant}}</h3>
+            <p class="text-center" style="font-size: small;">{{address}}, NY, {{zip}}</p>
             <p><p class="fa fa-star checked">&nbsp;&nbsp;</p>{{averages.average_rating}} / 5</p>
             <p class="lead">Average weekly pay for 4 days of work:</p>
             <p class="lead">Server: <span class="bold">${{averages.serv_four_day}}</span> / Bartender: <span class="bold">${{averages.bar_four_day}}</span></p>
@@ -36,6 +37,9 @@
                     <p class="lead"> Management: {{averages.average_mngmt}} / 10</p>
                 </div>
             </div>
+            <i class="fa fa-yelp" aria-hidden="true" style="color:red;"></i> <a href="https://www.yelp.com/biz/{{restaurant}}-new-york" target="_blank" style="text-decoration: none;">Yelp</a>
+            &nbsp; &nbsp;
+            <i class="fa fa-google" aria-hidden="true"></i> <a href="https://www.google.com/maps/dir/{{restaurant}}" target="_blank" style="text-decoration: none;">Google Maps</a>
         </div>
     </div>
     <div class="row">

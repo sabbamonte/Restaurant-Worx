@@ -134,8 +134,14 @@ def restaurant(request, restaurant):
         server_pay, bar_pay, busser_pay, runner_pay, back_pay = 0, 0, 0, 0, 0
         server_days, bar_days, busser_days, runner_days, back_days = 0, 0, 0, 0, 0
         envo, mngmt, hours, rating = [], [], [], []
-            
+        
+        addres = None
+        zip = None
+
         for review in all_reviews:
+            address = review.address
+            zip = review.zip
+
             if review.position == 'SERVER':
                 server_pay += review.pay
                 server_days += review.days
@@ -190,7 +196,7 @@ def restaurant(request, restaurant):
             "average_rating": mean(rating)
         }
 
-        return render(request, 'reviews/restaurant.html', {"restaurant": restaurant, "averages": all_averages, "page_obj": page_obj})
+        return render(request, 'reviews/restaurant.html', {"restaurant": restaurant, "address": address, "zip": zip, "averages": all_averages, "page_obj": page_obj})
 
 # Try to log user in
 @csrf_exempt
