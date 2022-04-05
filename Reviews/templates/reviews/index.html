@@ -53,6 +53,16 @@
         <!-- Right Colum -->
         {% if reviews %}
         <div class="col-12 col-md-5 offset-md-1" id="show_review">
+            {% if info.position %}
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                        <input type="checkbox" id={{info.position}} name="position">
+                    </div>
+                </div>
+                <p class="form-control">{{info.position}} reviews only</p>
+            </div>
+            {% endif %}
             {% for review in page_obj %}
             <div class="w3-card w3-round w3-white">
                 <div class="w3-container ">

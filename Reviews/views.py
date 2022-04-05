@@ -71,6 +71,13 @@ def delete(request, review_id):
 
         return JsonResponse({"message": "Deleted successfuly"}, status=201)
 
+# Show your position reviews only
+@login_required(login_url='/login')
+def position(request, position):
+    if request.method == "GET":
+        return render(request, "reviews.index.html")
+
+
 
 
 # Add/Edit position or location
