@@ -73,11 +73,12 @@ def delete(request, review_id):
 
 # Show your position reviews only
 @login_required(login_url='/login')
+@csrf_exempt
 def position(request, position):
     if request.method == "GET":
-        return render(request, "reviews.index.html")
+        data = Review.objects.filter(position=position).values()
 
-
+        return JsonResponse({"position": list(data)})
 
 
 # Add/Edit position or location

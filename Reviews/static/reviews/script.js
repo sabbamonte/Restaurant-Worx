@@ -26,7 +26,19 @@ document.addEventListener('DOMContentLoaded', function() {
             add_edit_info(button.id)
         })
     })
-    
+
+    // If Checkbox is checked pass it to function
+    check_button = document.getElementById('position_review')
+    check_button.addEventListener('click', () => {
+        if (check_button.checked) {
+            console.log(check_button.name)
+            position_reviews(check_button.name)
+        }
+        else {
+            location.href = ""
+        }
+    }) 
+
     // Create form to submit edited positon and location to database
     function add_edit_info(add_edit) {
         if (add_edit === 'pos_edit') {
@@ -202,5 +214,79 @@ document.addEventListener('DOMContentLoaded', function() {
             method: 'DELETE'
         })
         window.location.reload();
+    }
+
+    function position_reviews(position) {
+        fetch(`/position/${position}`)
+        .then(response => response.json())
+        .then(position => {
+            Array.prototype.forEach.call(position.position, pos => {
+                document.getElementById('show_review').innerHTML = 
+                `<div class="w3-card w3-round w3-white">
+                    <div class="w3-container text-center">
+                    <br>
+                        <div class="row w3-center">
+                            <a href="restaurant/${pos.name}"> <h4 class="w3-center">${pos.name}</h4> </a>
+                            <p class="text-center" style="font-size: small;">${pos.address}, NY, ${pos.zip}</p>
+                        </div>
+                        <hr>
+                        <div class="row w3-center">
+                            <div class="col-12 col-md-6 text-center">
+                                <p class="fa fa-star checked"></p> ${pos.rating} / 5
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <p>${pos.position}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body text-center">
+                        <table class="table">
+                            <thead class="text-center thead-light">
+                            <tr>
+                            <th scope="col">Days per Week</th>
+                            <th scope="col">Hours per Shift</th>
+                            <th scope="col">Pay per Week</th>
+                            </tr>
+                            </thead>
+                            <tbody class="text-center ">
+                                <tr>
+                                <td>${pos.days}</td>
+                                <td>${pos.hours}</td>
+                                <td>$${pos.pay}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <br>
+                        <table class="table">
+                        <thead class="text-center thead-light">
+                            <tr>
+                                <th scope="col">Environment</th>
+                                <th scope="col">Management</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-center">
+                            <tr>
+                                <td>${pos.envo}</td>
+                                <td>${pos.mngmt}</td>
+                            </tr>
+                        </tbody>
+                        </table>
+                        <br>
+                        <table class="table">
+                            <thead class="text-center thead-light">
+                            <tr>
+                                <th scope="col">Comments</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-center">
+                            <tr>
+                                <td>${pos.comments}</td>
+                            </tr>
+                        </tbody>
+                        </table>
+                    </div>
+                </div> `
+            });
+        })
     }
 });
