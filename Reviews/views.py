@@ -28,9 +28,12 @@ def index(request):
             return render(request, 'reviews/index.html', {"info": info, "reviews": reviews, "page_obj": page_obj, "user_reviews": user_reviews})
         except ObjectDoesNotExist:
             return render(request, 'reviews/index.html', {"reviews": reviews, "page_obj": page_obj, "user_reviews": user_reviews})
+# About
+def about(request):
+    if request.method == "GET":
+        return render(request, 'reviews/about.html')
 
 # Search for restaurant        
-@login_required(login_url='/login')   
 def search(request):
     if request.method == "GET":
         name = request.GET.get('search').upper()
@@ -45,7 +48,8 @@ def search(request):
             results = []
             for res in all_restaurants:
                 if name in res.name:
-                    results.append(res.name)
+                    if res.name not in results:
+                        results.append(res.name)
             return render(request, 'reviews/search.html', {"results": results})
         
 
@@ -115,10 +119,10 @@ def review(request):
         review.user = request.user
         review.name = data.get('name').upper()
         for address in all_addresses:
-            if data.get('address') in address.address:
-                review.address = None
-                review.zip = None
-            else:
+            if data.get('address').upper() in address.address:
+                review.address = address.address
+                review.zip = address.zip
+            else: 
                 review.address = data.get('address').upper()
                 review.zip = data.get('zip')
         review.position = data.get('position').upper()
@@ -136,8 +140,6 @@ def review(request):
 
         return JsonResponse({"message": "Updated successfuly"}, status=201)
 
-@login_required(login_url='/login')
-@csrf_exempt
 def restaurant(request, restaurant):
     if request.method == "GET":
         all_reviews = Review.objects.filter(name=restaurant).order_by('-id')

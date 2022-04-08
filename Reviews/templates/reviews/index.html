@@ -7,9 +7,9 @@
     <!-- The Grid -->
     <div class="row col-12">
         <!-- Left Column -->
-        <div class="col-12 col-md-4 profile offset-sm-1">
+        <div class="col-12 col-md-4 offset-sm-1">
             <!-- Profile -->
-            <div class="w3-card w3-round w3-white">
+            <div class="w3-card w3-round w3-white" >
                 <div class="w3-container">
                     <h4 class="w3-center">{{ request.user }}</h4>
                     <hr>
@@ -60,6 +60,7 @@
             {% endif %}
             <br>
         </div>
+
         <!-- End Left Column -->
         <!-- Right Colum -->
         {% if reviews %}
