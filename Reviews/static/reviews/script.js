@@ -28,15 +28,18 @@ document.addEventListener('DOMContentLoaded', function() {
     })
 
     // If Checkbox is checked pass it to function
-    check_button = document.getElementById('position_review')
-    check_button.addEventListener('click', () => {
-        if (check_button.checked) {
-            console.log(check_button.name)
-            position_reviews(check_button.name)
-        }
-        else {
-            location.href = ""
-        }
+    check_button = document.querySelectorAll('.position_review')
+    check_button.forEach((button) => {
+        button.addEventListener('click', () => {
+            if (button.checked) {
+                console.log(button.name)
+                position_reviews(button.name)
+            }
+            else {
+                location.href = ""
+            }
+        })
+        
     }) 
 
     // Create form to submit edited positon and location to database
@@ -220,10 +223,13 @@ document.addEventListener('DOMContentLoaded', function() {
         fetch(`/position/${position}`)
         .then(response => response.json())
         .then(position => {
+            document.getElementById('show_review').innerHTML = ''
             Array.prototype.forEach.call(position.position, pos => {
-                document.getElementById('show_review').innerHTML = 
-                `<div class="w3-card w3-round w3-white">
-                    <div class="w3-container text-center">
+                new_element = document.createElement(`div`)
+                add_br = document.createElement(`br`)
+                new_element.className = `w3-card w3-round w3-white`
+                new_element.innerHTML = 
+                `<div class="w3-container text-center">
                     <br>
                         <div class="row w3-center">
                             <a href="restaurant/${pos.name}"> <h4 class="w3-center">${pos.name}</h4> </a>
@@ -285,7 +291,9 @@ document.addEventListener('DOMContentLoaded', function() {
                         </tbody>
                         </table>
                     </div>
-                </div> `
+                </div>
+                `
+                document.getElementById('show_review').append(new_element, add_br)
             });
         })
     }

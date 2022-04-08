@@ -108,13 +108,19 @@ def review(request):
         return render(request, "reviews/review.html")
 
     if request.method == "POST":
+        all_addresses = Review.objects.all()
         data = json.loads(request.body.decode("utf-8"))
 
         review = Review()
         review.user = request.user
         review.name = data.get('name').upper()
-        review.address = data.get('address').upper()
-        review.zip = data.get('zip')
+        for address in all_addresses:
+            if data.get('address') in address.address:
+                review.address = None
+                review.zip = None
+            else:
+                review.address = data.get('address').upper()
+                review.zip = data.get('zip')
         review.position = data.get('position').upper()
         review.days = data.get('days')
         review.hours = data.get('hours')
@@ -143,7 +149,7 @@ def restaurant(request, restaurant):
         server_days, bar_days, busser_days, runner_days, back_days = 0, 0, 0, 0, 0
         envo, mngmt, hours, rating = [], [], [], []
         
-        addres = None
+        address = None
         zip = None
 
         for review in all_reviews:
@@ -198,10 +204,10 @@ def restaurant(request, restaurant):
             "busser_four_day": busser_four_day,
             "runner_four_day": runner_four_day,
             "back_four_day": back_four_day,
-            "average_envo": mean(envo),
-            "average_mngmt": mean(mngmt),
-            "average_hours": mean(hours),
-            "average_rating": mean(rating)
+            "average_envo": round(mean(envo)),
+            "average_mngmt": round(mean(mngmt)),
+            "average_hours": round(mean(hours)),
+            "average_rating": round(mean(rating))
         }
 
         return render(request, 'reviews/restaurant.html', {"restaurant": restaurant, "address": address, "zip": zip, "averages": all_averages, "page_obj": page_obj})
