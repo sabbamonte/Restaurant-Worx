@@ -8,6 +8,10 @@
     <div class="row col-12">
         <!-- Left Column -->
         <div class="col-12 col-md-4 offset-sm-1">
+            <div class="col-12 text-center">
+                <h4>Profile</h4>
+                <hr>
+            </div>
             <!-- Profile -->
             <div class="w3-card w3-round w3-white" >
                 <div class="w3-container">
@@ -65,8 +69,12 @@
         <!-- Right Colum -->
         {% if reviews %}
         <div class="col-12 col-md-5 offset-md-1" id="show_review">
+            <div class="col-12 text-center">
+                <h4>New Reviews</h4>
+                <hr>
+            </div>
             {% for review in page_obj %}
-            <div class="w3-card w3-round w3-white">
+            <div class="w3-card w3-round w3-white pop-in">
                 <div class="w3-container ">
                     <a href="{% url 'restaurant' review.name %}"> <h4 class="w3-center">{{ review.name }}</h4> </a> 
                     <p class="text-center" style="font-size: small;">{{review.address}}, NY, {{review.zip}}</p>
