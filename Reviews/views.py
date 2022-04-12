@@ -14,7 +14,12 @@ from django.core.paginator import Paginator
 from .models import User, Info, Review
 
 # Create your views here.
-@login_required(login_url='/login')
+
+def landing(request):
+    if request.method == "GET":
+        return render(request, "reviews/landing.html")
+
+@login_required(login_url='/landing')
 @csrf_exempt
 def index(request):
     if request.method == 'GET':

@@ -1,3 +1,10 @@
+#title {
+    color:aliceblue;
+    font-size: 100px;
+}
+
+
+
 .nav-item, .nav-link{
     text-decoration:none;
     color: black;
@@ -110,5 +117,7 @@ select{
     from { opacity: 0; }
     to   { opacity: 1; }
 }
+
+
 
 
