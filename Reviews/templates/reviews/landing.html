@@ -28,7 +28,7 @@
                 background-image: url("./static/Reviews/landing2.jpg");
 
                     /* Set a specific height */
-                min-height: 750px;
+                min-height: 800px;
 
                 /* Create the parallax scrolling effect */
                 background-attachment: fixed;
@@ -36,6 +36,20 @@
                 background-repeat: no-repeat;
                 background-size: cover;
             }
+
+            .parallax2 {
+                background-image: url("./static/Reviews/landing2.jpg");
+
+                    /* Set a specific height */
+                min-height: 600px;
+
+                /* Create the parallax scrolling effect */
+                background-attachment: fixed;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+            
         </style>
     </head>
 <body class="w3-theme-l5">
@@ -48,7 +62,7 @@
                 </div>
             </div>
         </div>
-        <br><br>
+        <br>
         <div class="row" >
             <div class="col-12 text-center">
                 <h1>About</h1>
@@ -67,36 +81,58 @@
             </div>
         </div>
         <br>
-        <div class="parallax">
-        <div class="row">
-            <div class="col-12">
-                <br>
-                <div class="card-deck justify-content-center ">
-                    <div class="col-12 col-md-3 card text-center pop-in">
-                      <div class="card-body">
-                        <h5 class="card-title">Search</h5>
-                        <p class="card-text">Search restaurants for employee reviews, see how much you could earn and if it's worth it to you.</p>
-                      </div>
-                    </div>
-                    <div class="col-12 col-md-3 card text-center pop-in2">
-                      <div class="card-body">
-                        <i class="icon-bubbles warning font-large-2"></i>
-                        <h5 class="card-title">Review</h5>
+        <div class="parallax2">
+            <div class="row">
+                <div class="col-12">
+                    <br>
+                    <div class="card-deck justify-content-center mt-5">
+                        <div class="col-12 col-md-3 card text-center pop-in mt-5">
+                        <div class="card-body">
+                            <i class="icon-book-open primary font-large-2"></i>
+                            <h5 class="card-title">Search</h5>
+                            <p class="card-text">Search restaurants to see how much you could earn and if it's worth it to you</p>
+                        </div>
+                        </div>
+                        <div class="col-12 col-md-3 card text-center pop-in2 mt-5">
+                        <div class="card-body">
+                            <i class="icon-bubbles warning font-large-2"></i>
+                            <h5 class="card-title">Review</h5>
+                            
+                            <p class="card-text">Review your own work place to help others make a decision</p>
+                        </div>
+                        </div>
+                        <div class="col-12 col-md-3 card text-center pop-in3 mt-5">
+                        <div class="card-body">
+                            <i class="icon-lock danger font-large-2"></i>
+                            <h5 class="card-title">Security</h5>
+                            <p class="card-text">Always anonymous and no personal information is shared with anybody</p>
+                        </div>
+                        </div>
                         
-                        <p class="card-text">Review your own work place to help others.</p>
-                      </div>
                     </div>
-                    <div class="col-12 col-md-3 card text-center pop-in3">
-                      <div class="card-body">
-                        <h5 class="card-title">Security</h5>
-                        <p class="card-text">Always anonymous and no personal information is shared with anybody.</p>
-                      </div>
+                </div>
+            </div>
+            <div class="row justify-content-center" style="padding: 80px;">
+                <div class="col-12 col-md-5 card text-center">
+                    <div class="card-body">
+                        <h3 class="card-title">Get Started</h3>
+                        <p class="card-text log"> <a href="{% url 'login' %}">LOG IN</a> or <a href="{% url 'register' %}">REGISTER</a></p>
                     </div>
-                  </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-        
+        <footer class="footer" style="background-color: lightgray">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-md-5 text-center">
+                        <p class="text-muted"> © 2022 ResWorx / created by Simone Abbamonte</p>
+                    </div>
+                </div>
+                
+            </div>
+
+        </footer>
     </container>
 </body>
 </html>
