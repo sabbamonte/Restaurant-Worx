@@ -12,12 +12,16 @@
     padding: 20px;
 }
 
-
-
 .nav-item, .nav-link{
     text-decoration:none;
     color: black;
 }
+
+.nav-link1 {
+    color: black;
+    font-size: x-large;
+}
+
 
 .nav-link {
     border-bottom: 2px solid transparent;
@@ -100,8 +104,8 @@ select{
 }
 
 .pop-in {
-    animation: pop-in 1s ease;
-    -webkit-animation: pop-in 1s ease;
+    animation: pop-in 2s ease;
+    -webkit-animation: pop-in 2s ease;
 }
 @-webkit-keyframes pop-in {
     from { opacity: 0; -webkit-transform: scale(0.5); }
@@ -113,21 +117,21 @@ select{
     }
 
 .pop-in2 {
-    animation: pop-in 2s ease;
-    -webkit-animation: pop-in 2s ease;
+    animation: pop-in 3s ease;
+    -webkit-animation: pop-in 3s ease;
 }
 @-webkit-keyframes pop-in {
-    from { opacity: 0; -webkit-transform: scale(1); }
-    to { opacity: 1; -webkit-transform: scale(1.5); }
+    from { opacity: 0;  }
+    to { opacity: 1; }
     }
 @keyframes pop-in {
-    from { opacity: 0; transform: scale(0.5); }
-    to { opacity: 1; transform: scale(1); }
+    from { opacity: 0; }
+    to { opacity: 1; }
     }
 
 .pop-in3 {
-    animation: pop-in 3s ease;
-    -webkit-animation: pop-in 3s ease;
+    animation: pop-in 4s ease;
+    -webkit-animation: pop-in 4s ease;
 }
 @-webkit-keyframes pop-in {
     from { opacity: 0; -webkit-transform: scale(0.5); }
@@ -141,6 +145,21 @@ select{
 .fade-in {
     animation: fade-in 3s ease;
     -webkit-animation: fade-in 3s ease;
+}
+
+@keyframes fade-in {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@-webkit-keyframes fade-in {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+.fade-in1 {
+    animation: fade-in 6s ease;
+    -webkit-animation: fade-in 6s ease;
 }
 
 @keyframes fade-in {
