@@ -41,7 +41,7 @@
                 background-image: url("./static/Reviews/landing2.jpg");
 
                     /* Set a specific height */
-                min-height: 450px;
+                min-height: 500px;
 
                 /* Create the parallax scrolling effect */
                 background-attachment: fixed;
@@ -114,7 +114,7 @@
                         document.querySelector('.parallax2').innerHTML = `
                         <div class="row">
                         <div class="col-12">
-                            <div class="card-deck justify-content-center mt-4">
+                            <div class="card-deck justify-content-center">
                                 <div class="col-12 col-md-3 card text-center pop-in mt-5">
                                     <div class="card-body">
                                         <i class="icon-book-open primary font-large-2"></i>
@@ -140,7 +140,7 @@
                         </div>
                         </div>
                         <div class="row justify-content-center">
-                            <div class="col-12 col-md-5 card border-0 text-center w3-theme-l5 mt-5 fade-in1" style="border:none">
+                            <div class="col-12 col-md-5 card border-0 text-center w3-theme-l5 pop-in4 mt-4" style="border:none">
                             <div class="card-body" >
                                 <h3 class="card-title">Get Started</h3>
                                 <p class="card-text log"> <a href="{% url 'login' %}">LOG IN</a> or <a href="{% url 'register' %}">REGISTER</a></p>
