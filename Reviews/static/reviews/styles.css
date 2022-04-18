@@ -116,6 +116,19 @@ select{
     to { opacity: 1; transform: scale(1); }
     }
 
+.pop-in1 {
+    animation: pop-in 1s ease;
+    -webkit-animation: pop-in 1s ease;
+}
+@-webkit-keyframes pop-in {
+    from { opacity: 0; -webkit-transform: scale(0.5); }
+    to { opacity: 1; -webkit-transform: scale(1); }
+    }
+@keyframes pop-in {
+    from { opacity: 0; transform: scale(0.5); }
+    to { opacity: 1; transform: scale(1); }
+    }
+
 .pop-in2 {
     animation: pop-in 3s ease;
     -webkit-animation: pop-in 3s ease;
@@ -142,6 +155,19 @@ select{
     to { opacity: 1; transform: scale(1); }
     }
 
+.pop-in4 {
+    animation: pop-in 0.5s ease;
+    -webkit-animation: pop-in 0.5s ease;
+}
+@-webkit-keyframes pop-in {
+    from { opacity: 0; -webkit-transform: scale(0.5); }
+    to { opacity: 1; -webkit-transform: scale(1); }
+    }
+@keyframes pop-in {
+    from { opacity: 0; transform: scale(0.5); }
+    to { opacity: 1; transform: scale(1); }
+    }
+
 .fade-in {
     animation: fade-in 3s ease;
     -webkit-animation: fade-in 3s ease;
@@ -157,18 +183,10 @@ select{
     to   { opacity: 1; }
 }
 
-.pop-in4 {
-    animation: pop-in 0.5s ease;
-    -webkit-animation: pop-in 0.5s ease;
+.fade-in1 {
+    animation: fade-in 1s ease;
+    -webkit-animation: fade-in 1s ease;
 }
-@-webkit-keyframes pop-in {
-    from { opacity: 0; -webkit-transform: scale(0.5); }
-    to { opacity: 1; -webkit-transform: scale(1); }
-    }
-@keyframes pop-in {
-    from { opacity: 0; transform: scale(0.5); }
-    to { opacity: 1; transform: scale(1); }
-    }
 
 @keyframes fade-in {
     from { opacity: 0; }
@@ -179,6 +197,7 @@ select{
     from { opacity: 0; }
     to   { opacity: 1; }
 }
+
 
 
 

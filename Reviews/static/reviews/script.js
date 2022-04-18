@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(review => {
             Array.prototype.forEach.call(review.review, rev => {
                 document.getElementById('show_review').innerHTML = 
-                `<div class="w3-card w3-round w3-white pop-in">
+                `<div class="w3-card w3-round w3-white pop-in1">
                     <div class="w3-container text-center">
                     <br>
                         <div class="row w3-center">
@@ -227,7 +227,7 @@ document.addEventListener('DOMContentLoaded', function() {
             Array.prototype.forEach.call(position.position, pos => {
                 new_element = document.createElement(`div`)
                 add_br = document.createElement(`br`)
-                new_element.className = `w3-card w3-round w3-white pop-in`
+                new_element.className = `w3-card w3-round w3-white pop-in1`
                 new_element.innerHTML = 
                 `<div class="w3-container text-center">
                     <br>

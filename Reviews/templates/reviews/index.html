@@ -74,7 +74,7 @@
                 <hr>
             </div>
             {% for review in page_obj %}
-            <div class="w3-card w3-round w3-white pop-in">
+            <div class="w3-card w3-round w3-white pop-in1">
                 <div class="w3-container ">
                     <a href="{% url 'restaurant' review.name %}"> <h4 class="w3-center">{{ review.name }}</h4> </a> 
                     <p class="text-center" style="font-size: small;">{{review.address}}, NY, {{review.zip}}</p>
