@@ -2,17 +2,13 @@
 {% load static %}
 
 {% block body %}
-<!-- Page Container -->
 <div class="container" style="max-width:1400px;">    
-    <!-- The Grid -->
     <div class="row col-12">
-        <!-- Left Column -->
         <div class="col-12 col-md-4 offset-sm-1">
             <div class="col-12 text-center">
                 <h4>Profile</h4>
                 <hr>
             </div>
-            <!-- Profile -->
             <div class="w3-card w3-round w3-white" >
                 <div class="w3-container">
                     <h4 class="w3-center">{{ request.user }}</h4>
@@ -33,7 +29,7 @@
                 </div> 
             </div>
             <br>
-            <!-- Accordion -->
+
             <div class="accordion" id="my_reviews">
                 <div class="w3-card w3-round">
                     <div class="w3-white" id="review_heading">
@@ -65,8 +61,6 @@
             <br>
         </div>
 
-        <!-- End Left Column -->
-        <!-- Right Colum -->
         {% if reviews %}
         <div class="col-12 col-md-5 offset-md-1" id="show_review">
             <div class="col-12 text-center">
@@ -87,6 +81,7 @@
                             </script>
                             <div id="srating-{{review.id}}"></div>
                             <script type="text/javascript">
+                                // Display how many stars the review has
                                 i = 0;
                                 review = document.getElementById('{{review.id}}').innerHTML;
                                 while( i < review) {
@@ -174,7 +169,7 @@
         </div>
         {% endif %}
     </div>
-<!-- End Page Container -->
+
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-end">
             <li class="page-item disabled">

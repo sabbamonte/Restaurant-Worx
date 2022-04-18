@@ -39,7 +39,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 location.href = ""
             }
         })
-        
     }) 
 
     // Create form to submit edited positon and location to database
@@ -124,7 +123,7 @@ document.addEventListener('DOMContentLoaded', function() {
         })
     }
 
-    // Function to show the selected review from my reviews
+    // Function to show the selected review from My Reviews
     function show_review(review) {
         fetch(`/show/${review}`)
         .then(response => response.json())
@@ -204,6 +203,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                 </div> `
 
+                // Button to delete the review
                 button = document.getElementById(rev.id)
                 button.addEventListener('click', () => {
                     delete_review(button.id)
@@ -212,6 +212,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Function to delete the revieww
     function delete_review(review) {
         fetch(`delete/${review}`, {
             method: 'DELETE'
@@ -219,6 +220,7 @@ document.addEventListener('DOMContentLoaded', function() {
         window.location.reload();
     }
 
+    // Function to show reviews based on your position only
     function position_reviews(position) {
         fetch(`/position/${position}`)
         .then(response => response.json())

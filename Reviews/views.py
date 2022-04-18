@@ -13,12 +13,12 @@ from django.core.paginator import Paginator
 
 from .models import User, Info, Review
 
-# Create your views here.
-
+# Show landing page 
 def landing(request):
     if request.method == "GET":
         return render(request, "reviews/landing.html")
 
+# Index
 @login_required(login_url='/landing')
 @csrf_exempt
 def index(request):
@@ -110,6 +110,7 @@ def add(request):
 
         return JsonResponse({"message": "Updated successfuly"}, status=201)
 
+# Save reviews to database
 @login_required(login_url='/login')
 @csrf_exempt
 def review(request):
@@ -145,6 +146,7 @@ def review(request):
 
         return JsonResponse({"message": "Updated successfuly"}, status=201)
 
+# Show specific/searched restaurant
 def restaurant(request, restaurant):
     if request.method == "GET":
         all_reviews = Review.objects.filter(name=restaurant).order_by('-id')
@@ -159,6 +161,7 @@ def restaurant(request, restaurant):
         address = None
         zip = None
 
+        # Create averages of all positions and their pay
         for review in all_reviews:
             address = review.address
             zip = review.zip

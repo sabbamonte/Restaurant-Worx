@@ -27,10 +27,8 @@
             .parallax {
                 background-image: url("./static/Reviews/landing2.jpg");
 
-                    /* Set a specific height */
                 min-height: 800px;
 
-                /* Create the parallax scrolling effect */
                 background-attachment: fixed;
                 background-position: center;
                 background-repeat: no-repeat;
@@ -40,16 +38,13 @@
             .parallax2 {
                 background-image: url("./static/Reviews/landing2.jpg");
 
-                    /* Set a specific height */
                 min-height: 500px;
 
-                /* Create the parallax scrolling effect */
                 background-attachment: fixed;
                 background-position: center;
                 background-repeat: no-repeat;
                 background-size: cover;
             }
-            
         </style>
     </head>
 <body class="w3-theme-l5">
@@ -110,7 +105,7 @@
                 window.onscroll = () => {
                     // Check if we're at the bottom
                     if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
-                        // Change color to green
+                        // Show the cards
                         document.querySelector('.parallax2').innerHTML = `
                         <div class="row">
                         <div class="col-12">
@@ -150,9 +145,7 @@
                     } 
                 };
             </script>
-            
         </div>
-        
         <footer class="footer" style="background-color: lightgray">
             <div class="container">
                 <div class="row justify-content-center">
@@ -162,7 +155,6 @@
                 </div>
                 
             </div>
-
         </footer>
     </container>
 </body>
