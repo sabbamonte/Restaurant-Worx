@@ -198,6 +198,29 @@ select{
     to   { opacity: 1; }
 }
 
+@media only screen and (max-width: 500px) {
+    #title {
+        font-size: 80px;
+    }
+
+    .title {
+        font-size: 60px;
+    }
+
+    .rating>label {
+        font-size: 7vw;
+    }
+  
+    .about {
+        padding:15px;
+    }
+
+    .pop-in, .pop-in1, .pop-in2, .pop-in3, .pop-in4 {
+        animation: none;
+    } 
+    
+}
+
 
 
 
